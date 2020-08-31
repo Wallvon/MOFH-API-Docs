@@ -67,13 +67,14 @@ import requests
 from xml.etree.ElementTree import fromstring, ElementTree
 
 url = "https://panel.myownfreehost.net:2087/xml-api/createacct.php"
-data = {'username': 'example', 'password': 'password', 'contactemail': 'example@example.co', 'domain': 'subdomain.example.com', 'plan': 'MyAwesomePlan'} # if you want to use a domain which is not a subdomain, put that domain in.
+data = {'username': 'example', 'password': 'password', 'contactemail': 'example@example.co', 'domain': 'subdomain.example.com', 'plan': 'MyAwesomePlan'}
+# if you want to use a domain which is not a subdomain, put that domain in.
 
 response = requests.post(url, params=data, auth=('API USERNAME' 'API PASSWORD'), verify=False)
 tree = ElementTree(fromstring(response.content))
 root = tree.getroot()
 for child in root:
-  print(child[0][1].text)
+  print(child[0][1].text) # The vPanel and FTP username
 ```
 
 ```shell
