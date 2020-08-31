@@ -19,7 +19,7 @@ code_clipboard: true
 
 # Introduction
 
-Welcome to the unofficial MOFH API Docs! You can use our API to learn how the MOFH API works.
+Welcome to the unofficial MyOwnFreeHost API Docs! You can use our API to learn how the MOFH API works.
 
 There are examples in Python and cURL, but if you know any other coding language please make a pull request on the [GitHub page](https://github.com/Wallvon/MOFH-API-Docs). You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
