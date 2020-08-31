@@ -1,15 +1,13 @@
 ---
-title: API Reference
+title: Unofficial MOFH API Docs
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
   - python
-  - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+  - <a href='https://github.com/Wallvon/MOFH-API-Docs'>GitHub Repository</a>
+  - <a href='https://that-guy.tech'>Made by Robert S.</a>
 
 includes:
   - errors
@@ -21,221 +19,75 @@ code_clipboard: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the unofficial MOFH API Docs! You can use our API to learn how the MOFH API works.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+There are examples in Python and cURL, but if you know any other coding language please make a pull request on the [GitHub page](https://github.com/Wallvon/MOFH-API-Docs). You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Other MOFH API wrappers:   
+
+* [mofh-client](https://github.com/InfinityFreeHosting/mofh-client) (PHP)
+
+Coming soon:   
+
+* [mofh.py](#) (Python)
 
 # Authentication
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
 ```python
-import kittn
+import requests
 
-api = kittn.authorize('meowmeowmeow')
+url = "https://panel.myownfreehost.net:2087/xml-api/" # This is the base URL
+data = {}
+
+response = requests.post(url, params=data, auth=('API USERNAME' 'API PASSWORD'), verify=False)
 ```
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl --insecure "https://panel.myownfreehost.net:2087/xml-api/" --user username:password
 ```
 
-```javascript
-const kittn = require('kittn');
+> Make sure to replace `username:password` or `API USERNAME` and `API PASSWORD` with your API credentials.
 
-let api = kittn.authorize('meowmeowmeow');
-```
+MOFH uses API credentials to allow access to the API, you can get them [here](https://panel.myownfreehost.net/panel/index2.php?option=api).
 
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+MOFH expects for the API credentials to be included in all API requests to the server.
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>username:password</code> or <code>API USERNAME</code> and <code>API PASSWORD</code> with your API credentials.
 </aside>
 
-# Kittens
+# API - Accounts
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+## Create Account
 
 ```python
-import kittn
+import requests
+from xml.etree.ElementTree import fromstring, ElementTree
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+url = "https://panel.myownfreehost.net:2087/xml-api/createacct.php"
+data = {'username': 'example', 'password': 'password', 'contactemail': 'example@example.co', 'domain': 'subdomain.example.com', 'plan': 'MyAwesomePlan'} # if you want to use a domain which is not a subdomain, put that domain in.
+
+response = requests.post(url, params=data, auth=('API USERNAME' 'API PASSWORD'), verify=False)
+tree = ElementTree(fromstring(response.content))
+root = tree.getroot()
+for child in root:
+  print(child[0][1].text)
 ```
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+COMING SOON
 ```
 
-```javascript
-const kittn = require('kittn');
+> The above command returns XML structured like this:
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+```xml
+COMING SOON
 ```
 
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
+This endpoint creates a new user account with the provided information.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+`POST https://panel.myownfreehost.net:2087/xml-api/createacct.php`
