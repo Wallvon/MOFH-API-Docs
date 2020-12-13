@@ -2,6 +2,7 @@
 title: Unofficial MOFH API Docs
 
 language_tabs: # must be one of https://git.io/vQNgJ
+  - shell
   - python
 
 toc_footers:
@@ -20,7 +21,7 @@ code_clipboard: true
 
 Welcome to the unofficial MyOwnFreeHost (MOFH) API Docs! You can use our API to learn how the MOFH API works.
 
-There are examples in Python, but if you know any other coding language and are willing to contribute please consider making a pull request on the [GitHub repository](https://github.com/Wallvon/MOFH-API-Docs). You can view code examples in the dark area to the right, and you can switch the coding language of the examples with the tabs in the top right.
+There are examples in cURL and Python, but if you know any other coding language and are willing to contribute please consider making a pull request on the [GitHub repository](https://github.com/Wallvon/MOFH-API-Docs). You can view code examples in the dark area to the right, and you can switch the coding language of the examples with the tabs in the top right.
 
 Other MOFH API wrappers:   
 
@@ -31,12 +32,16 @@ Other MOFH API wrappers:
 Some other side-notes:
 
 * You can create up to 3 accounts per email with the MOFH API.
-* The MOFH API is very limited, so you can't really do more than what is listed here.
-* The MOFH API is not user-friendly, and I really wouldn't recommend using it.
+* The MOFH API is pretty limited, so you can't really do more than what is listed here.
+* The SSL certificate on `https://panel.myownfreehost.net:2087/xml-api/` tends to expire, so you may need to turn off SSL verification.
 
 # Authentication
 
 > To authorize, use this code:
+
+```shell
+curl -X POST -u username:password "https://panel.myownfreehost.net:2087/xml-api/"
+```
 
 ```python
 import requests
@@ -61,6 +66,10 @@ You must replace <code>username</code> and <code>password</code> with your API c
 
 ## Create account
 
+```shell
+curl -X POST -u username:password -d "username=example&password=password&contactemail=example@example.com&domain=subdomain.example.com&plan=MyAwesomePlan" "https://panel.myownfreehost.net:2087/xml-api/createacct.php"
+```
+
 ```python
 import requests
 from requests.auth import HTTPBasicAuth
@@ -69,7 +78,7 @@ from requests.auth import HTTPBasicAuth
 url = "https://panel.myownfreehost.net:2087/xml-api/createacct.php"
 data = {'username': 'example', 'password': 'password', 'contactemail': 'example@example.com', 'domain': 'subdomain.example.com', 'plan': 'MyAwesomePlan'} # If you want to use a domain which is not a subdomain, put that domain in.
 
-response = requests.post(url, params=data, auth=HTTPBasicAuth('API USERNAME', 'API PASSWORD'))
+response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
 
 print(response.text)
 
@@ -118,6 +127,10 @@ This endpoint creates a new user account with the provided information.
 
 ## Suspend account
 
+```shell
+curl -X POST -u username:password -d "user=example&reason=My beautiful reason." "https://panel.myownfreehost.net:2087/xml-api/suspendacct.php"
+```
+
 ```python
 import requests
 from requests.auth import HTTPBasicAuth
@@ -126,7 +139,7 @@ from requests.auth import HTTPBasicAuth
 url = "https://panel.myownfreehost.net:2087/xml-api/suspendacct.php"
 data = {'user': 'username', 'reason': 'My beautiful reason.'} # For the username, use the same username you set when creating the account.
 
-response = requests.post(url, params=data, auth=HTTPBasicAuth('API USERNAME', 'API PASSWORD'))
+response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
 
 print(response.text)
 
@@ -165,6 +178,10 @@ This endpoint suspends a user account with the provided information.
 
 ## Unsuspend account
 
+```shell
+curl -X POST -u username:password -d "user=username" "https://panel.myownfreehost.net:2087/xml-api/unsuspendacct.php"
+```
+
 ```python
 import requests
 from requests.auth import HTTPBasicAuth
@@ -173,7 +190,7 @@ from requests.auth import HTTPBasicAuth
 url = "https://panel.myownfreehost.net:2087/xml-api/unsuspendacct.php"
 data = {'user': 'username'} # For the username, use the same username you set when creating the account.
 
-response = requests.post(url, params=data, auth=HTTPBasicAuth('API USERNAME', 'API PASSWORD'))
+response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
 
 print(response.text)
 
@@ -205,6 +222,10 @@ This endpoint unsuspends a user account with the provided information.
 
 ## Change password
 
+```shell
+curl -X POST -u username:password -d "user=username&pass=password" "https://panel.myownfreehost.net:2087/xml-api/passwd.php"
+```
+
 ```python
 import requests
 from requests.auth import HTTPBasicAuth
@@ -213,7 +234,7 @@ from requests.auth import HTTPBasicAuth
 url = "https://panel.myownfreehost.net:2087/xml-api/passwd.php"
 data = {'user': 'username', 'pass': 'password'} # For the username, use the same username you set when creating the account.
 
-response = requests.post(url, params=data, auth=HTTPBasicAuth('API USERNAME', 'API PASSWORD'))
+response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
 
 print(response.text)
 
@@ -263,14 +284,18 @@ This endpoint changes the password of a user account with the provided informati
 
 ## Check if a domain is available
 
+```shell
+curl -X POST -u username:password -d "api_user=username&api_key=password&domain=subdomain.example.com" "https://panel.myownfreehost.net:2087/xml-api/checkavailable.php"
+```
+
 ```python
 import requests
 from requests.auth import HTTPBasicAuth
 
 url = "https://panel.myownfreehost.net:2087/xml-api/checkavailable.php"
-data = {'api_user': 'API USERNAME', 'api_key': 'API PASSWORD', 'domain': 'subdomain.example.com'} # If you want to use a domain which is not a subdomain, put that domain in.
+data = {'api_user': 'username', 'api_key': 'password', 'domain': 'subdomain.example.com'} # If you want to use a domain which is not a subdomain, put that domain in.
 
-response = requests.post(url, params=data, auth=HTTPBasicAuth('API USERNAME', 'API PASSWORD'))
+response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
 
 print(response.text) # Returns the status code, either 0 or 1.
 
@@ -290,14 +315,18 @@ This endpoint checks if the requested domain name is available.
 
 ## Get a user's domains
 
+```shell
+curl -X POST -u username:password -d "api_user=username&api_key=password&username=hname_12345678" "https://panel.myownfreehost.net:2087/xml-api/getuserdomains.php"
+```
+
 ```python
 import requests
 from requests.auth import HTTPBasicAuth
 
 url = "https://panel.myownfreehost.net:2087/xml-api/getuserdomains.php"
-data = {'api_user': 'API USERNAME', 'api_key': 'API PASSWORD', 'username': 'hname_12345678'}
+data = {'api_user': 'username', 'api_key': 'password', 'username': 'hname_12345678'}
 
-response = requests.post(url, params=data, auth=HTTPBasicAuth('API USERNAME', 'API PASSWORD'))
+response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
 
 print(response.text)
 
@@ -317,14 +346,18 @@ This endpoint gets the domains connected to a user's account.
 
 ## Get a user by a domain
 
+```shell
+curl -X POST -u username:password -d "api_user=username&api_key=password&domain=subdomain.example.com" "https://panel.myownfreehost.net:2087/xml-api/getdomainuser.php"
+```
+
 ```python
 import requests
 from requests.auth import HTTPBasicAuth
 
 url = "https://panel.myownfreehost.net:2087/xml-api/getdomainuser.php"
-data = {'api_user': 'API USERNAME', 'api_key': 'API PASSWORD', 'domain': 'subdomain.example.com'}
+data = {'api_user': 'username', 'api_key': 'password', 'domain': 'subdomain.example.com'}
 
-response = requests.post(url, params=data, auth=HTTPBasicAuth('API USERNAME', 'API PASSWORD'))
+response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
 
 print(response.text)
 
