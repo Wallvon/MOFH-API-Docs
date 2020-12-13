@@ -334,7 +334,7 @@ print(response.text)
 
 > The above command returns a list/array structured like this:
 
-```python
+```xml
 [["ACTIVE","subdomain.example.com"]]
 ```
 
@@ -365,7 +365,7 @@ print(response.text)
 
 > The above command returns a list/array structured like this:
 
-```python
+```xml
 ["ACTIVE","subdomain.example.com","\/home\/vol15_2\/example.com\/hname_12345678\/htdocs","hname_12345678"]
 ```
 
