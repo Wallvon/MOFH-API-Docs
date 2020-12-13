@@ -1,18 +1,5 @@
 # Errors
 
-The MOFH API uses the following error codes:
+The MOFH API doesn't use any error codes and will always return a 200 HTTP code. _sigh_
 
-
-Error Code | Meaning
----------- | -------
-400 | Bad Request -- Your request is invalid.
-401 | Unauthorized -- Your API key is wrong.
-403 | Forbidden -- The kitten requested is hidden for administrators only.
-404 | Not Found -- The specified kitten could not be found.
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method.
-406 | Not Acceptable -- You requested a format that isn't json.
-410 | Gone -- The kitten requested has been removed from our servers.
-418 | I'm a teapot.
-429 | Too Many Requests -- You're requesting too many kittens! Slow down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
+You would have to get the text inside the `<status></status>` tags to get the status of your request (either `0` or `1`). Or if you try to use the `getuserdomains.php` and `getdomainuser.php` endpoints you will see that it just returns `null` instead of the list/array it usually gives.

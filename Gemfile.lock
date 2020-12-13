@@ -124,6 +124,7 @@ GEM
 PLATFORMS
   ruby
   x64-mingw32
+  x86_64-linux
 
 DEPENDENCIES
   middleman (~> 4.3)
@@ -139,4 +140,4 @@ RUBY VERSION
    ruby 2.3.3p222
 
 BUNDLED WITH
-   2.1.4
+   2.2.0
