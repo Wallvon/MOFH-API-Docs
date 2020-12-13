@@ -29,6 +29,10 @@ Other MOFH API wrappers:
 
 * [mofh.py](#) (Python) (Coming Soon)
 
+* [mofh-client-js](https://www.npmjs.com/package/mofh-client-js) (JS)
+
+* [mofh-client](https://www.npmjs.com/package/mofh-client) (JS)
+
 Some other side-notes:
 
 * You can create up to 3 accounts per email with the MOFH API.
