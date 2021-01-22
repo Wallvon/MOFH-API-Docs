@@ -27,7 +27,7 @@ Other MOFH API wrappers:
 
 * [mofh-client](https://github.com/InfinityFreeHosting/mofh-client) (PHP)
 
-* [mofh.py](#) (Python) (Coming Soon)
+* [mofh](https://github.com/Wallvon/mofh) (Python)
 
 * [mofh-client-js](https://www.npmjs.com/package/mofh-client-js) (JS)
 
