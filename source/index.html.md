@@ -317,7 +317,7 @@ This endpoint checks if the requested domain name is available.
 
 `POST https://panel.myownfreehost.net:2087/xml-api/checkavailable.php`
 
-## Get a user's domains
+## Get user's domains
 
 ```shell
 curl -X POST -u username:password -d "api_user=username&api_key=password&username=hname_12345678" "https://panel.myownfreehost.net:2087/xml-api/getuserdomains.php"
