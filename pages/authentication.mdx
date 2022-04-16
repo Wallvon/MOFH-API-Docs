@@ -1,0 +1,31 @@
+import Callout from 'nextra-theme-docs/callout'
+
+# Authentication
+
+<Callout type="warning" emoji="⚠️">
+    You must replace `username` and `password` with your API credentials.
+</Callout>
+
+## Usage
+
+### cURL
+```bash
+curl -X POST -u username:password "https://panel.myownfreehost.net:2087/xml-api/"
+```
+
+
+### Python
+```python highlight=6
+import requests
+
+url = "https://panel.myownfreehost.net:2087/xml-api/" # This is the base URL
+data = {}
+
+response = requests.post(url, params=data, auth=('username' 'password'), verify=False)
+```
+
+MyOwnFreeHost uses API credentials to allow access to the API. You can get them [here](https://panel.myownfreehost.net/panel/index2.php?option=api).
+
+<Callout type="error" emoji="❗️">
+    <u>**All**</u> API requests must be authenticated.
+</Callout>

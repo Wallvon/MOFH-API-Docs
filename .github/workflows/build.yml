@@ -1,36 +1,30 @@
-name: Build
-
+name: Build, Export and Publish Next.js App
 on:
   push:
-    branches: [ '*' ]
+    branches:
+      - master
   pull_request:
-    branches: [ '*' ]
+    branches:
+      - master
+  workflow_dispatch:
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        ruby-version: [2.3, 2.4, 2.5, 2.6, 2.7]
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby-version }}
-
-    - uses: actions/cache@v1
-      with:
-        path: vendor/bundle
-        key: gems-${{ runner.os }}-${{ matrix.ruby-version }}-${{ hashFiles('**/Gemfile.lock') }}
-
-    # necessary to get ruby 2.3 to work nicely with bundler vendor/bundle cache
-    # can remove once ruby 2.3 is no longer supported
-    - run: gem update --system
-
-    - run: bundle config set deployment 'true'
-    - run: bundle install
-
-    - run: bundle exec middleman build
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+      - run: |
+          yarn install
+          yarn build
+      - name: Next Pages
+        uses: anorcle/next-pages@v1.0
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "mofh-docs-builder"
+          git config --global user.email "hello@robert-s.dev"
+          git add -A
+          git commit -m "New Build"
+          git push

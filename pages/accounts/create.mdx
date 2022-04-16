@@ -1,0 +1,73 @@
+import Callout from 'nextra-theme-docs/callout'
+
+# Create account
+This endpoint creates a new vPanel user account with the provided information.
+
+
+## HTTP Endpoint
+
+`POST https://panel.myownfreehost.net:2087/xml-api/createacct.php`
+
+## Usage
+
+### cURL
+```bash
+curl -X POST -u username:password -d "username=example&password=password&contactemail=example@example.com&domain=subdomain.example.com&plan=MyAwesomePlan" "https://panel.myownfreehost.net:2087/xml-api/createacct.php"
+```
+
+
+### Python
+```python highlight=17-18,20
+import requests
+from requests.auth import HTTPBasicAuth
+from xml.etree.ElementTree import fromstring, ElementTree # Do this if you only want to get the username.
+
+url = "https://panel.myownfreehost.net:2087/xml-api/createacct.php"
+data = {'username': 'example', 'password': 'password', 'contactemail': 'example@example.com', 'domain': 'subdomain.example.com', 'plan': 'MyAwesomePlan'} # If you want to use a domain which is not a subdomain, put that domain in.
+
+response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
+
+print(response.text)
+
+# Do this if you only want to get the username.
+tree = ElementTree(fromstring(response.content))
+root = tree.getroot()
+for child in root:
+    print(child[0][1].text) # The vPanel and FTP username
+```
+
+
+## Response
+
+<Callout emoji="💡">
+**The above request returns XML structured like this:**
+
+```xml
+<createacct>
+     <result>
+          <options>
+                  <ip>n</ip>
+                  <vpusername>hname_12345678</vpusername>
+                  <nameserver>ns1.byet.org</nameserver>
+                  <nameserver2>ns2.byet.org</nameserver2>
+                  <nameserver3/>
+                  <nameserver4/>
+                  <nameservera/>
+                  <nameservera2/>
+                  <nameservera3/>
+                  <nameservera4/>
+                  <nameserverentry/>
+                  <nameserverentry2/>
+                  <nameserverentry3/>
+                  <nameserverentry4/>
+                  <package></package>
+          </options>
+          <rawout>
+           account added to queue to be added
+          </rawout>
+          <status>1</status>
+          <statusmsg>This account has been successfuly created</statusmsg>
+     </result>
+</createacct>
+```
+</Callout>

@@ -1,0 +1,62 @@
+import Callout from 'nextra-theme-docs/callout'
+
+# Suspend account
+This endpoint suspends the vPanel user account associated with the provided information.
+
+
+## HTTP Endpoint
+
+`POST https://panel.myownfreehost.net:2087/xml-api/suspendacct.php`
+
+## Usage
+
+### cURL
+```bash
+curl -X POST -u username:password -d "user=example&reason=My beautiful reason." "https://panel.myownfreehost.net:2087/xml-api/suspendacct.php"
+```
+
+
+### Python
+```python highlight=25-26,28
+import requests
+from requests.auth import HTTPBasicAuth
+from xml.etree.ElementTree import fromstring, ElementTree # Do this if you only want to get the status code.
+
+url = "https://panel.myownfreehost.net:2087/xml-api/suspendacct.php"
+data = {'user': 'username', 'reason': 'My beautiful reason.'} # For the username, use the same username you set when creating the account.
+
+response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
+
+print(response.text)
+
+# Do this if you only want to get the status code.
+tree = ElementTree(fromstring(response.content))
+root = tree.getroot()
+for child in root:
+    print(child[0].text) # The status code (can either be 0 or 1)
+```
+
+
+## Response
+
+<Callout emoji="💡">
+    **The above request returns XML structured like this:**
+
+    ```xml
+    <suspendacct>
+        <result>
+            <status>1</status>
+            <statusmsg>
+                <script>if (self['clear_ui_status']) { clear_ui_status(); }</script>
+                Changing Shell to /bin/false...Changing shell for username.
+                Shell changed.
+                Locking Password...Locking password for user username.
+                marking user vhosts / databases for suspension.
+                ..
+                ..
+                Completed, this account will be fully suspended in 2 minutes.
+            </statusmsg>
+        </result>
+    </suspendacct>
+    ```
+</Callout>
