@@ -23,6 +23,7 @@ jobs:
         uses: anorcle/next-pages@v1.0
       - name: Commit and push changes
         run: |
+          echo "api.myownfreehost.net" >> docs/CNAME
           git config --global user.name "mofh-docs-builder"
           git config --global user.email "hello@robert-s.dev"
           git add -A
