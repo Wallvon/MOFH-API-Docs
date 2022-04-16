@@ -1,0 +1,41 @@
+import Callout from 'nextra-theme-docs/callout'
+
+# Check if a domain is available
+This endpoint checks if the requested domain name is available.
+
+
+## HTTP Endpoint
+
+`POST https://panel.myownfreehost.net:2087/xml-api/checkavailable.php`
+
+## Usage
+
+### cURL
+```bash
+curl -X POST -u username:password -d "api_user=username&api_key=password&domain=subdomain.example.com" "https://panel.myownfreehost.net:2087/xml-api/checkavailable.php"
+```
+
+
+### Python
+```python highlight=24-25,27
+import requests
+from requests.auth import HTTPBasicAuth
+
+url = "https://panel.myownfreehost.net:2087/xml-api/checkavailable.php"
+data = {'api_user': 'username', 'api_key': 'password', 'domain': 'subdomain.example.com'} # If you want to use a domain which is not a subdomain, put that domain in.
+
+response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
+
+print(response.text)
+```
+
+
+## Response
+
+<Callout emoji="💡">
+    **The above request returns an integer (either 0 or 1):**
+
+    ```
+    1
+    ```
+</Callout>

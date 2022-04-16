@@ -1,0 +1,41 @@
+import Callout from 'nextra-theme-docs/callout'
+
+# Get a user by domain
+This endpoint gets a user which has the requested domain connected to their vPanel account.
+
+
+## HTTP Endpoint
+
+`POST https://panel.myownfreehost.net:2087/xml-api/getdomainuser.php`
+
+## Usage
+
+### cURL
+```bash
+curl -X POST -u username:password -d "api_user=username&api_key=password&domain=subdomain.example.com" "https://panel.myownfreehost.net:2087/xml-api/getdomainuser.php"
+```
+
+
+### Python
+```python highlight=24-25,27
+import requests
+from requests.auth import HTTPBasicAuth
+
+url = "https://panel.myownfreehost.net:2087/xml-api/getdomainuser.php"
+data = {'api_user': 'username', 'api_key': 'password', 'domain': 'subdomain.example.com'}
+
+response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
+
+print(response.text)
+```
+
+
+## Response
+
+<Callout emoji="💡">
+    **The above request returns a list/array structured like this:**
+
+    ```
+    ["ACTIVE","subdomain.example.com","\/home\/vol15_2\/example.com\/hname_12345678\/htdocs","hname_12345678"]
+    ```
+</Callout>
