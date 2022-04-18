@@ -1,4 +1,5 @@
 export default {
+    github: 'https://github.com/Wallvon/MOFH-API-Docs',
     projectLink: 'https://github.com/Wallvon/MOFH-API-Docs', // GitHub link in the navbar
     docsRepositoryBase: 'https://github.com/Wallvon/MOFH-API-Docs/blob/main', // base URL for the docs repository
     titleSuffix: ' – MyOwnFreeHost API Documentation',
@@ -8,7 +9,11 @@ export default {
     customSearch: null, // customizable, you can use algolia for example
     darkMode: true,
     footer: true,
-    footerText: `MIT ${new Date().getFullYear()} © Robert S.`,
+    footerText: (
+        <>
+            MIT {new Date().getFullYear()} © <a href="https://robert-s.dev" target="_blank" rel="noopener noreferrer">Robert S.</a>
+        </>
+    ),
     footerEditLink: `Edit this page on GitHub`,
     logo: (
         <>
