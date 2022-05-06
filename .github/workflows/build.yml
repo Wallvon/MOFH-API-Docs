@@ -20,7 +20,7 @@ jobs:
           yarn install
           yarn build
       - name: Next Pages
-        uses: anorcle/next-pages@v1.0
+        uses: reeseovine/next-pages@v1.0
       - name: Commit and push changes
         run: |
           echo "api.myownfreehost.net" >> docs/CNAME
