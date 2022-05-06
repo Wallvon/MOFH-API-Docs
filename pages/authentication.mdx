@@ -14,7 +14,7 @@ import Callout from 'nextra-theme-docs/callout'
 
 ### cURL
 ```bash
-curl -X POST -u username:password "https://panel.myownfreehost.net:2087/xml-api/"
+curl -X POST -u username:password "https://panel.myownfreehost.net/xml-api/"
 ```
 
 
@@ -22,7 +22,7 @@ curl -X POST -u username:password "https://panel.myownfreehost.net:2087/xml-api/
 ```python highlight=6
 import requests
 
-url = "https://panel.myownfreehost.net:2087/xml-api/" # This is the base URL
+url = "https://panel.myownfreehost.net/xml-api/" # This is the base URL
 data = {}
 
 response = requests.post(url, params=data, auth=('username' 'password'), verify=False)

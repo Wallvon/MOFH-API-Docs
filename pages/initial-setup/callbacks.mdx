@@ -1,0 +1,82 @@
+---
+title: Callbacks
+---
+
+import Callout from 'nextra-theme-docs/callout'
+
+# Callbacks
+The MyOwnFreeHost API allows you to set up a callback URL that will be called when a user accounts gets activated, suspended or unsuspended, or when an SQL cluster gets added to a user.
+
+## Setup
+
+### 1. Log in to the MyOwnFreeHost reseller panel
+This can be accessed at [https://panel.myownfreehost.net/index.php](https://panel.myownfreehost.net/index.php) and the page should look something like this:
+![Login page](/login.png)
+
+And you should be logged in. The dashboard looks something like this:
+![Dashboard](/dashboard.png)
+
+
+### 2. Go to the API setup page
+This can be done by clicking on the "API" link in the sidebar, and then clicking on "Setup WHM API". Once you have done that, this is what the page should look like:
+![WHM API page](/whm_api.png)
+
+Then, select the domain name you want to create the accounts on and click on "Get Keys/ Set allow ip address".
+
+### 3. Add the callback URL
+Once you are there, add your callback URL to the "API Callback URL" field. It should look something like this:
+![Callback URL added](/callback.png)
+In this example the URL `https://example.com/callback` is used.
+
+Then, click on "Update Settings" and everything should be set up!
+
+## Callbacks
+
+The following callbacks are available:
+
+### Account activation
+With the account activation callback, you will get the following form values:
+```
+username	<vpanel_username>
+status	ACTIVATED
+comments	GENERIC ACTIVATION
+```
+
+### SQL Cluster addition
+With the SQL cluster addition callback, you will get the following form values:
+```
+Form values:
+username	<vpanel_username>
+status	sql102
+comments	SQL_SERVER
+```
+
+### Account suspension
+With the account suspension callback, you will get the following form values:
+```
+Form values:
+username	<vpanel_username>
+status	SUSPENDED
+comments	OTHER_CLOSE; REQUESTED
+```
+
+<Callout emoji="💡">
+    **The comments field is _usually_ one of the following:**
+    - `PHISHING`
+    - `VIRUS_MALWARE_HOSTING`
+    - `NULLED_SCRIPT`
+    - `CONTENT_VIOLATION`
+    - `ABUSE_COMPLAINT`
+    - `SPAM_DOMAIN_SIGNUP`
+    - `REQUESTED`
+    - `OTHER`
+</Callout>
+
+### Account unsuspension
+With the account unsuspension callback, you will get the following form values:
+```
+Form values:
+username	<vpanel_username>
+status	REACTIVATE
+comments	GENERIC REACT
+```

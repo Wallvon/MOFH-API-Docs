@@ -1,0 +1,29 @@
+---
+title: Add an allowed IP
+---
+
+# Add an allowed IP
+The MyOwnFreeHost API requires you to add the IP address of the server you are going to make API requests from.
+
+## Setup
+
+### 1. Log in to the MyOwnFreeHost reseller panel
+This can be accessed at [https://panel.myownfreehost.net/index.php](https://panel.myownfreehost.net/index.php) and the page should look something like this:
+![Login page](/login.png)
+
+And you should be logged in. The dashboard looks something like this:
+![Dashboard](/dashboard.png)
+
+
+### 2. Go to the API setup page
+This can be done by clicking on the "API" link in the sidebar, and then clicking on "Setup WHM API". Once you have done that, this is what the page should look like:
+![WHM API page](/whm_api.png)
+
+Then, select the domain name you want to create the accounts on and click on "Get Keys/ Set allow ip address".
+
+### 3. Add the IP address
+Once you are there, add your IP address to the "API Allowed IP Address (main IP of server you are connecting from)" field. It should look something like this:
+![IP address added](/api_ip.png)
+In this example the IP `1.1.1.1` is used.
+
+Then, click on "Update Settings" and everything should be set up!
