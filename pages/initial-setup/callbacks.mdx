@@ -62,6 +62,7 @@ comments	OTHER_CLOSE; REQUESTED
 
 <Callout emoji="💡">
     **The comments field is _usually_ one of the following:**
+    - `AUTO_IDLE`
     - `PHISHING`
     - `VIRUS_MALWARE_HOSTING`
     - `NULLED_SCRIPT`
@@ -80,3 +81,16 @@ username	<vpanel_username>
 status	REACTIVATE
 comments	GENERIC REACT
 ```
+
+### Account deletetion
+With the account unsuspension callback, you will get the following form values:
+```
+Form values:
+username	<vpanel_username>
+status	DELETE
+comments	<vpanel_username>
+```
+<Callout emoji="💡">
+    **When does an account get deleted?**
+    The account usually gets deleted about 60 days after a suspension. In case the account went to auto-idle its about 2-3 days.
+</Callout>
