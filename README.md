@@ -1,3 +1,3 @@
 # MyOwnFreeHost API Documentation
 
-Made with Nextra.
+Made with Nextra. And a lot of coffee.

@@ -2,7 +2,8 @@
 title: Create account
 ---
 
-import Callout from 'nextra-theme-docs/callout'
+import { Callout } from 'nextra-theme-docs'
+import { Tab, Tabs } from 'nextra-theme-docs'
 
 # Create account
 This endpoint creates a new vPanel user account with the provided information.
@@ -14,31 +15,33 @@ This endpoint creates a new vPanel user account with the provided information.
 
 ## Usage
 
-### cURL
-```bash
-curl -X POST -u username:password -d "username=example&password=password&contactemail=example@example.com&domain=subdomain.example.com&plan=MyAwesomePlan" "https://panel.myownfreehost.net/xml-api/createacct.php"
-```
+<Tabs items={['cURL', 'Python']}>
+    <Tab>
+        ```bash
+        curl -X POST -u username:password -d "username=example&password=password&contactemail=example@example.com&domain=subdomain.example.com&plan=MyAwesomePlan" "https://panel.myownfreehost.net/xml-api/createacct.php"
+        ```
+    </Tab>
+    <Tab>
+        ```python highlight=17-18,20
+        import requests
+        from requests.auth import HTTPBasicAuth
+        from xml.etree.ElementTree import fromstring, ElementTree # Do this if you only want to get the username.
 
+        url = "https://panel.myownfreehost.net/xml-api/createacct.php"
+        data = {'username': 'example', 'password': 'password', 'contactemail': 'example@example.com', 'domain': 'subdomain.example.com', 'plan': 'MyAwesomePlan'} # If you want to use a domain which is not a subdomain, put that domain in.
 
-### Python
-```python highlight=17-18,20
-import requests
-from requests.auth import HTTPBasicAuth
-from xml.etree.ElementTree import fromstring, ElementTree # Do this if you only want to get the username.
+        response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
 
-url = "https://panel.myownfreehost.net/xml-api/createacct.php"
-data = {'username': 'example', 'password': 'password', 'contactemail': 'example@example.com', 'domain': 'subdomain.example.com', 'plan': 'MyAwesomePlan'} # If you want to use a domain which is not a subdomain, put that domain in.
+        print(response.text)
 
-response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
-
-print(response.text)
-
-# Do this if you only want to get the username.
-tree = ElementTree(fromstring(response.content))
-root = tree.getroot()
-for child in root:
-    print(child[0][1].text) # The vPanel and FTP username
-```
+        # Do this if you only want to get the username.
+        tree = ElementTree(fromstring(response.content))
+        root = tree.getroot()
+        for child in root:
+            print(child[0][1].text) # The vPanel and FTP username
+        ```
+    </Tab>
+</Tabs>
 
 
 ## Response

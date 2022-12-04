@@ -2,7 +2,8 @@
 title: Authentication
 ---
 
-import Callout from 'nextra-theme-docs/callout'
+import { Callout } from 'nextra-theme-docs'
+import { Tab, Tabs } from 'nextra-theme-docs'
 
 # Authentication
 
@@ -12,21 +13,23 @@ import Callout from 'nextra-theme-docs/callout'
 
 ## Usage
 
-### cURL
-```bash
-curl -X POST -u username:password "https://panel.myownfreehost.net/xml-api/"
-```
+<Tabs items={['cURL', 'Python']}>
+    <Tab>
+        ```bash
+        curl -X POST -u username:password "https://panel.myownfreehost.net/xml-api/"
+        ```
+    </Tab>
+    <Tab>
+        ```python highlight=6
+        import requests
 
+        url = "https://panel.myownfreehost.net/xml-api/" # This is the base URL
+        data = {}
 
-### Python
-```python highlight=6
-import requests
-
-url = "https://panel.myownfreehost.net/xml-api/" # This is the base URL
-data = {}
-
-response = requests.post(url, params=data, auth=('username' 'password'), verify=False)
-```
+        response = requests.post(url, params=data, auth=('username' 'password'), verify=False)
+        ```
+    </Tab>
+</Tabs>
 
 MyOwnFreeHost uses API credentials to allow access to the API. You can get them [here](https://panel.myownfreehost.net/panel/index2.php?option=api).
 
