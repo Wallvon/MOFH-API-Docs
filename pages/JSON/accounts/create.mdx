@@ -1,0 +1,73 @@
+---
+title: Create account
+---
+
+import { Callout } from 'nextra-theme-docs'
+import { Tab, Tabs } from 'nextra-theme-docs'
+
+# Create account
+This endpoint creates a new vPanel user account with the provided information.
+
+
+## HTTP Endpoint
+`POST https://panel.myownfreehost.net/json-api/createacct.php`
+
+## Usage
+
+<Tabs items={['cURL', 'Python']}>
+    <Tab>
+        ```bash
+        curl -X POST -u username:password -d "username=example&password=password&contactemail=example@example.com&domain=subdomain.example.com&plan=MyAwesomePlan" "https://panel.myownfreehost.net/json-api/createacct.php"
+        ```
+    </Tab>
+    <Tab>
+        ```python
+        import requests
+        from requests.auth import HTTPBasicAuth
+
+        url = "https://panel.myownfreehost.net/json-api/createacct.php"
+        data = {'username': 'example', 'password': 'password', 'contactemail': 'example@example.com', 'domain': 'subdomain.example.com', 'plan': 'MyAwesomePlan'} # If you want to use a domain which is not a subdomain, put that domain in.
+
+        response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
+        print(response.json())
+        # Do this if you only want to get the status code.
+        print(response.json()["result"][0]["status"])
+        ```
+    </Tab>
+</Tabs>
+
+
+## Response
+
+<Callout emoji="💡">
+**The above request returns JSON structured like this:**
+
+```json
+    {
+        "result": [
+            {
+                "options": {
+                    "nameserverentry3": null,
+                    "nameservera": null,
+                    "nameserver4": "ns4.byet.org",
+                    "ip": "n",
+                    "nameservera4": null,
+                    "nameserver": "ns1.byet.org",
+                    "package": "package_name",
+                    "nameserver2": "ns2.byet.org",
+                    "nameservera2": null,
+                    "nameserverentry4": null,
+                    "nameservera3": "ns3.byet.org",
+                    "nameserverentry2": null,
+                    "nameserverentry": null,
+                    "nameserver3": "ns3.byet.org",
+                    "nameserver5": "ns5.byet.org"
+                },
+                "statusmsg": "Account Creation Ok",
+                "rawout": "Account Creation Ok",
+                "status": 1
+            }
+        ]
+    }
+```
+</Callout>

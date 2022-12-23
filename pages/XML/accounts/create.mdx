@@ -10,7 +10,6 @@ This endpoint creates a new vPanel user account with the provided information.
 
 
 ## HTTP Endpoint
-
 `POST https://panel.myownfreehost.net/xml-api/createacct.php`
 
 ## Usage
@@ -22,7 +21,7 @@ This endpoint creates a new vPanel user account with the provided information.
         ```
     </Tab>
     <Tab>
-        ```python highlight=17-18,20
+        ```python
         import requests
         from requests.auth import HTTPBasicAuth
         from xml.etree.ElementTree import fromstring, ElementTree # Do this if you only want to get the username.

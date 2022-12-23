@@ -12,6 +12,16 @@ export default {
     editLink: {
         text: 'Edit this page on GitHub'
     },
+    banner: {
+        key: 'json-api-docs-available',
+        text: <>
+            🎉 JSON API documentation is now available!
+        </>,
+        dismissible: true
+    },
+    sidebar: {
+        defaultMenuCollapseLevel: 0
+    },
     useNextSeoProps() {
         const { frontMatter } = useConfig()
         const { route, asPath } = useRouter()

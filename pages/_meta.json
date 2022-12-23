@@ -1,8 +1,8 @@
 {
   "index": "Introduction",
   "initial-setup": "Initial Setup",
-  "authentication": "Authentication",
-  "accounts": "Accounts",
-  "domains": "Domains",
-  "errors": "Errors"
+  "JSON": "JSON API",
+  "XML": "XML API",
+  "errors": "Errors",
+  "changelog": "Changelog"
 }
