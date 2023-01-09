@@ -42,7 +42,7 @@ This endpoint removes the vPanel user account associated with the provided infor
         tree = ElementTree(fromstring(response.content))
         root = tree.getroot()
         for child in root:
-        print(child[0].text) # The status code (can either be 0 or 1)
+            print(child[0].text) # The status code (can either be 0 or 1)
         ```
     </Tab>
 </Tabs>
