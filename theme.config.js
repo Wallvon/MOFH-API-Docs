@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { useConfig } from "nextra-theme-docs";
 
 export default {
@@ -13,9 +14,9 @@ export default {
         text: 'Edit this page on GitHub'
     },
     banner: {
-        key: 'json-api-docs-available',
+        key: 'ticket-api-docs-available',
         text: <>
-            🎉 JSON API documentation is now available!
+            🎉 Support ticket and account removal API documentation is now available! <Link href="/changelog" style={{textDecoration: 'underline'}}>Changelog...</Link>
         </>,
         dismissible: true
     },

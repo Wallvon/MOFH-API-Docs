@@ -37,48 +37,60 @@ The following callbacks are available:
 ### Account activation
 With the account activation callback, you will get the following form values:
 ```
-username	<vpanel_username>
-status	ACTIVATED
-comments	GENERIC ACTIVATION
+username: <vpanel_username>
+status: ACTIVATED
+comments: GENERIC ACTIVATION
 ```
 
 ### SQL Cluster addition
 With the SQL cluster addition callback, you will get the following form values:
 ```
 Form values:
-username	<vpanel_username>
-status	sql102
-comments	SQL_SERVER
+username: <vpanel_username>
+status: <sql_cluster_id>
+comments: SQL_SERVER
 ```
 
 ### Account suspension
+<Callout emoji="ℹ️" type="info">
+    **What are the comments that you could receive when an account gets suspended?**
+    - `PHISHING`
+    - `VIRUS_MALWARE_HOSTING`
+    - `NULLED_SCRIPT`
+    - `CONTENT_VIOLATION`
+    - `ABUSE_COMPLAINT`
+    - `SPAM_DOMAIN_SIGNUP`
+    - `REQUSTED`
+    - `OTHER`
+</Callout>
+
 With the account suspension callback, you will get the following form values:
 ```
 Form values:
-username	<vpanel_username>
-status	SUSPENDED
-comments	OTHER_CLOSE; REQUESTED
+username: <vpanel_username>
+status: SUSPENDED
+comments: <comment_here> : <reason_here>
 ```
 
 ### Account unsuspension
 With the account unsuspension callback, you will get the following form values:
 ```
 Form values:
-username	<vpanel_username>
-status	REACTIVATE
-comments	GENERIC REACT
+username: <vpanel_username>
+status: REACTIVATE
+comments: GENERIC REACT
 ```
 
 ### Account deletion
+<Callout emoji="ℹ️" type="info">
+    **When does an account get auto-deleted?**
+    An account usually gets deleted about 60 days after a suspension. In the case that an account went into an auto-idle state it's about 2 days.
+</Callout>
+
 With the account deletion callback, you will get the following form values:
 ```
 Form values:
-username	<vpanel_username>
-status	DELETE
-comments	<vpanel_username>
+username: <vpanel_username>
+status: DELETE
+comments: <vpanel_username>
 ```
-
-<Callout emoji="💡">
-    **When does an account get deleted?**
-    An account usually gets deleted about 60 days after a suspension. In the case that an account went into an auto-idle state it's about 2 days.
-</Callout>

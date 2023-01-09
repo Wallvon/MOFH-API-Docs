@@ -1,0 +1,47 @@
+---
+title: User reply
+---
+
+import { Callout } from 'nextra-theme-docs'
+import { Tab, Tabs } from 'nextra-theme-docs'
+
+# User reply
+This endpoint allows a user to reply to a message sent in a ticket.
+
+
+## HTTP Endpoint
+`POST https://panel.myownfreehost.net/xml-api/supportreplyticket.php`
+
+## Usage
+
+<Tabs items={['cURL', 'Python']}>
+    <Tab>
+        ```bash
+        curl -X POST -u username:password -d "api_user=username&api_key=password&domain_name=subdomain.example.com&ticket_id=000000" -F ticket_id=000000 -F clientusername=hname_12345678 -F comments=Test -F ipaddress=1.1.1.1 "https://panel.myownfreehost.net/xml-api/supportreplyticket.php"
+        ```
+    </Tab>
+    <Tab>
+        ```python
+        import requests
+        from requests.auth import HTTPBasicAuth
+
+        url = "https://panel.myownfreehost.net/xml-api/createacct.php"
+        data = {'api_user': 'example', 'api_key': 'password', 'domain_name': 'subdomain.example.com'}
+        form_data = {'ticket_id': '000000', 'clientusername': 'hname_12345678', 'comments': 'Test', 'ipaddress': '1.1.1.1'}
+
+        response = requests.post(url, params=data, files=form_data, auth=HTTPBasicAuth('username', 'password'))
+        print(response.text)
+        ```
+    </Tab>
+</Tabs>
+
+
+## Response
+
+<Callout emoji="💡">
+    **The above request returns text structured like the following:**
+
+    ```
+    SUCCESS
+    ```
+</Callout>

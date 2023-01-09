@@ -8,7 +8,7 @@ import { Callout } from 'nextra-theme-docs'
 
 Welcome to the MyOwnFreeHost (MOFH) API Documentation. This documentation is unofficial and provided by [Robert S](https://robert-s.dev) and [contributors](https://github.com/Wallvon/MOFH-API-Docs/graphs/contributors).
 
-If you find any errors throughout this API reference, please make an issue on the [GitHub repository](https://github.com/Wallvon/MOFH-API-Docs/issues/new).
+If you find any errors throughout this API reference or know of any API endpoints or wrappers that aren't listed, please make an issue on the [GitHub repository](https://github.com/Wallvon/MOFH-API-Docs/issues/new) or join the [iFastNet Community Discord server](https://dsc.gg/ifastnet) and ping `Roberto#1762`.
 
 There are examples in cURL and Python, but if you know any other programming language and are willing to contribute please consider making a pull request on the [GitHub repository](https://github.com/Wallvon/MOFH-API-Docs).
 
@@ -24,12 +24,13 @@ MOFH API wrappers:
 
 * [mofh-net-api](https://github.com/ptobuon/mofh-net-api) (.NET)
 
-<Callout emoji="💡">
+<Callout emoji="ℹ️" type="info">
 **Side-notes**
-- You can create up to 3 accounts per person with the MOFH API. You _may_ be able to create more accounts, but this is not advised and when I asked the iFastNet team they said that there was a limit of 3 accounts per person.
+- You can create up to **3** accounts per person with the MOFH API. You _may_ be able to create more accounts, but this is not advised and when I asked the iFastNet team they said that there was a limit of 3 accounts per person.
 - The MOFH API is pretty limited, so you can't really do more than what is listed here without doing some trickery and whatnot.
 - The SSL certificate on `https://panel.myownfreehost.net/xml-api/` tends to expire, so you may need to turn off SSL verification.
 - You can use both `https://panel.myownfreehost.net/xml-api/` and `https://panel.myownfreehost.net:2087/xml-api/` to access the API, but on the latter the SSL certificate is practically guaranteed to be expired.
+- **Every** request returns a 200 OK status code, even invalid requests. You need to check the response body to see if the request was successful or not.
 </Callout>
 
 With that out of the way, let's get started, shall we?

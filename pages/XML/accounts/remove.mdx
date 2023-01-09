@@ -1,24 +1,28 @@
 ---
-title: Suspend account
+title: Remove account
 ---
 
 import { Callout } from 'nextra-theme-docs'
 import { Tab, Tabs } from 'nextra-theme-docs'
 
-# Suspend account
-This endpoint suspends the vPanel user account associated with the provided information.
+# Remove account
+This endpoint removes the vPanel user account associated with the provided information.
 
 
 ## HTTP Endpoint
 
-`POST https://panel.myownfreehost.net/xml-api/suspendacct.php`
+`POST https://panel.myownfreehost.net/xml-api/removeacct.php`
 
 ## Usage
+
+<Callout emoji="⚠️" type="warning">
+    You will first have to use the [suspend](/XML/accounts/suspend) endpoint to suspend the account before you can remove it.
+</Callout>
 
 <Tabs items={['cURL', 'Python']}>
     <Tab>
         ```bash
-        curl -X POST -u username:password -d "user=example&reason=My beautiful reason." "https://panel.myownfreehost.net/xml-api/suspendacct.php"
+        curl -X POST -u username:password -d "user=example" "https://panel.myownfreehost.net/xml-api/removeacct.php"
         ```
     </Tab>
     <Tab>
@@ -27,8 +31,8 @@ This endpoint suspends the vPanel user account associated with the provided info
         from requests.auth import HTTPBasicAuth
         from xml.etree.ElementTree import fromstring, ElementTree # Do this if you only want to get the status code.
 
-        url = "https://panel.myownfreehost.net/xml-api/suspendacct.php"
-        data = {'user': 'username', 'reason': 'My beautiful reason.'} # For the username, use the same username you set when creating the account.
+        url = "https://panel.myownfreehost.net/xml-api/removeacct.php"
+        data = {'user': 'username'} # For the username, use the same username you set when creating the account.
 
         response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
 
@@ -38,7 +42,7 @@ This endpoint suspends the vPanel user account associated with the provided info
         tree = ElementTree(fromstring(response.content))
         root = tree.getroot()
         for child in root:
-            print(child[0].text) # The status code (can either be 0 or 1)
+        print(child[0].text) # The status code (can either be 0 or 1)
         ```
     </Tab>
 </Tabs>
@@ -49,21 +53,15 @@ This endpoint suspends the vPanel user account associated with the provided info
 <Callout emoji="💡">
     **The above request returns XML structured like the following:**
 
-    ```xml
-    <suspendacct>
+    ```json
+    <removeacct>
         <result>
             <status>1</status>
             <statusmsg>
                 <script>if (self['clear_ui_status']) { clear_ui_status(); }</script>
-                Changing Shell to /bin/false...Changing shell for username.
-                Shell changed.
-                Locking Password...Locking password for user username.
-                marking user vhosts / databases for suspension.
-                ..
-                ..
-                Completed, this account will be fully suspended in 2 minutes.
+                username account has been unsuspended
             </statusmsg>
         </result>
-    </suspendacct>
+    </removeacct>
     ```
 </Callout>
