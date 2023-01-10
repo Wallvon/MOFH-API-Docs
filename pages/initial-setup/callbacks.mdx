@@ -43,7 +43,6 @@ comments: GENERIC ACTIVATION
 ```
 
 ### SQL Cluster addition
-
 <Callout emoji="ℹ️" type="info">
     **When is the SQL Cluster callback sent?**
     The SQL Cluster callback is generally sent a few seconds after an account has been activated for the first time.
@@ -51,7 +50,6 @@ comments: GENERIC ACTIVATION
 
 With the SQL cluster addition callback, you will get the following form values:
 ```
-Form values:
 username: <vpanel_username>
 status: <sql_cluster_id>
 comments: SQL_SERVER
@@ -60,7 +58,7 @@ comments: SQL_SERVER
 ### Account suspension
 <Callout emoji="ℹ️" type="info">
     **What are the comments that you could receive when an account gets suspended?**
-    Permanent Suspension Reasons
+    Permanent suspension reasons:
     - `PHISHING`
     - `VIRUS_MALWARE_HOSTING`
     - `NULLED_SCRIPT`
@@ -70,30 +68,28 @@ comments: SQL_SERVER
     - `REQUSTED`
     - `ADMIN_SUSPEND`
     - `ADMIN_CLOSE : <reason>`
-    - `RES_CLOSE : <comment>`
+    - `RES_CLOSE : <reason>`
     - `OTHER`
 
-    Temporary Suspension Reasons
+    Temporary suspension reasons:
     - `DAILY_IO`
     - `DAILY_HIT`
     - `MYSQL_OVERLOAD`
 
-    Inactivity Suspension Reason
+    Inactivity suspension reasons:
     - `AUTO_IDLE`
 </Callout>
 
 With the account suspension callback, you will get the following form values:
 ```
-Form values:
 username: <vpanel_username>
 status: SUSPENDED
-comments: <comment_here> : <reason_here>
+comments: <comment> : <reason>
 ```
 
 ### Account unsuspension
 With the account unsuspension callback, you will get the following form values:
 ```
-Form values:
 username: <vpanel_username>
 status: REACTIVATE
 comments: GENERIC REACT
@@ -107,7 +103,6 @@ comments: GENERIC REACT
 
 With the account deletion callback, you will get the following form values:
 ```
-Form values:
 username: <vpanel_username>
 status: DELETE
 comments: <vpanel_username>
@@ -126,10 +121,9 @@ With the ticket response callback, you will get one of the following form values
 
 Type 1 (Support Agent Response):
 ```
-Form values:
 callback_type: ticket
 ticket_id: <6-digit number>
-support_reply: <support agents reply>
+support_reply: <support agent's reply>
 ticket_status: S
 ```
 
