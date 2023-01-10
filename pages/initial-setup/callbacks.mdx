@@ -5,7 +5,7 @@ title: Callbacks
 import { Callout } from 'nextra-theme-docs'
 
 # Callbacks
-The MyOwnFreeHost API allows you to set up a callback URL that will be called when a user accounts gets activated, suspended or unsuspended, or when an SQL cluster gets added to a user.
+The MyOwnFreeHost API allows you to set up a callback URL that will be called when a user accounts gets activated, suspended or unsuspended, or when an SQL cluster gets added to a user. The callback URL is also used for the ticketing system
 
 ## Setup
 
@@ -30,9 +30,9 @@ In this example the URL `https://example.com/callback` is used.
 
 Then, click on "Update Settings" and everything should be set up!
 
-## Callbacks
+## Hosting Account Callbacks
 
-The following callbacks are available:
+The following hosting account callbacks are available:
 
 ### Account activation
 With the account activation callback, you will get the following form values:
@@ -43,6 +43,12 @@ comments: GENERIC ACTIVATION
 ```
 
 ### SQL Cluster addition
+
+<Callout emoji="ℹ️" type="info">
+    **When is the SQL Cluster callback sent?**
+    The SQL Cluster callback is generally sent a few seconds after an account has been activated for the first time.
+</Callout>
+
 With the SQL cluster addition callback, you will get the following form values:
 ```
 Form values:
@@ -54,6 +60,7 @@ comments: SQL_SERVER
 ### Account suspension
 <Callout emoji="ℹ️" type="info">
     **What are the comments that you could receive when an account gets suspended?**
+    Permanent Suspension Reasons
     - `PHISHING`
     - `VIRUS_MALWARE_HOSTING`
     - `NULLED_SCRIPT`
@@ -61,7 +68,18 @@ comments: SQL_SERVER
     - `ABUSE_COMPLAINT`
     - `SPAM_DOMAIN_SIGNUP`
     - `REQUSTED`
+    - `ADMIN_SUSPEND`
+    - `ADMIN_CLOSE : <reason>`
+    - `RES_CLOSE : <comment>`
     - `OTHER`
+
+    Temporary Suspension Reasons
+    - `DAILY_IO`
+    - `DAILY_HIT`
+    - `MYSQL_OVERLOAD`
+
+    Inactivity Suspension Reason
+    - `AUTO_IDLE`
 </Callout>
 
 With the account suspension callback, you will get the following form values:
@@ -93,4 +111,33 @@ Form values:
 username: <vpanel_username>
 status: DELETE
 comments: <vpanel_username>
+```
+
+## Ticketing System Callbacks
+
+### Account suspension
+<Callout emoji="ℹ️" type="info">
+    **Important Note:**
+    The callback URL that you entered in the MOFH panel above is the same URL that the ticketing system uses.
+</Callout>
+
+### Ticket response
+With the ticket response callback, you will get one of the following form values:
+
+Type 1 (Support Agent Response):
+```
+Form values:
+callback_type: ticket
+ticket_id: <6-digit number>
+support_reply: <support agents reply>
+ticket_status: S
+```
+
+Type 2 (Ticket Closed):
+```
+Form values:
+callback_type: ticket
+ticket_id: <6-digit number>
+support_reply: Ticket status changed to Closed at <date>, <time><br><br>Please do reply to this ticket if you have any further queries and we will happily assist.
+ticket_status: C
 ```
