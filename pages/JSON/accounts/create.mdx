@@ -30,6 +30,8 @@ This endpoint creates a new vPanel user account with the provided information.
 
         response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
         print(response.json())
+        # Do this if you only want to get the username.
+        print(response.json()["result"][0]["options"]["vpusername"])
         # Do this if you only want to get the status code.
         print(response.json()["result"][0]["status"])
         ```
@@ -47,6 +49,7 @@ This endpoint creates a new vPanel user account with the provided information.
         "result": [
             {
                 "options": {
+                    "vpusername": "hname_12345678",
                     "nameserverentry3": null,
                     "nameservera": null,
                     "nameserver4": "ns4.byet.org",
