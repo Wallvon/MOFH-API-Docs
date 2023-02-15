@@ -14,9 +14,9 @@ export default {
         text: 'Edit this page on GitHub'
     },
     banner: {
-        key: 'ticket-api-docs-available',
+        key: 'change-package-api-docs-available',
         text: <>
-            🎉 Support ticket and account removal API documentation is now available! <Link href="/changelog" style={{textDecoration: 'underline'}}>Changelog...</Link>
+            🎉 Change package API documentation is now available! <Link href="/changelog" style={{textDecoration: 'underline'}}>Changelog...</Link>
         </>,
         dismissible: true
     },

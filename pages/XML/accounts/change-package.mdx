@@ -1,0 +1,66 @@
+---
+title: Change package
+---
+
+import { Callout } from 'nextra-theme-docs'
+import { Tab, Tabs } from 'nextra-theme-docs'
+
+# Change package
+This endpoint changes the package of the vPanel user account associated with provided information.
+
+
+## HTTP Endpoint
+
+`POST https://panel.myownfreehost.net/xml-api/changepackage.php`
+
+## Usage
+
+<Callout emoji="⚠️" type="warning">
+    Your package name must be fully lowercase since otherwise the user will get the "Client is not allocated to a package" package which has the maximum resources.
+</Callout>
+
+<Tabs items={['cURL', 'Python']}>
+    <Tab>
+        ```bash
+        curl -X POST -u username:password -d "user=example&pkg=myawesomeplan" "https://panel.myownfreehost.net/xml-api/changepackage.php"
+        ```
+    </Tab>
+    <Tab>
+        ```python
+        import requests
+        from requests.auth import HTTPBasicAuth
+        from xml.etree.ElementTree import fromstring, ElementTree # Do this if you only want to get the status code.
+
+        url = "https://panel.myownfreehost.net/xml-api/changepackage.php"
+        data = {'user': 'username', 'pkg': 'myawesomeplan'} # Keep in mind that the package name must be fully lowercase.
+
+        response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
+
+        print(response.text)
+
+        # Do this if you only want to get the status code.
+        tree = ElementTree(fromstring(response.content))
+        root = tree.getroot()
+        for child in root:
+            print(child[1].text) # The status code (can either be 0 or 1)
+        ```
+    </Tab>
+</Tabs>
+
+
+## Response
+
+<Callout emoji="💡">
+    **The above request returns XML structured like the following:**
+
+    ```xml
+    <changepackage>
+        <result>
+            <rawout>
+            </rawout>
+            <status>1</status>
+            <statusmsg>Account Upgrade/Downgrade Complete for asdfasdf</statusmsg>
+        </result>
+    </changepackage>
+    ```
+</Callout>
