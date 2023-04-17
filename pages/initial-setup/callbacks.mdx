@@ -58,6 +58,7 @@ comments: SQL_SERVER
 ### Account suspension
 <Callout emoji="ℹ️" type="info">
     **What are the comments that you could receive when an account gets suspended?**
+   
     Permanent suspension reasons:
     - `PHISHING`
     - `VIRUS_MALWARE_HOSTING`
@@ -105,6 +106,46 @@ With the account deletion callback, you will get the following form values:
 ```
 username: <vpanel_username>
 status: DELETE
+comments: <vpanel_username>
+```
+   
+### Domain Added To Account
+<Callout emoji="ℹ️" type="info">
+    **What are the domain codes?**
+   
+    Parked Domain Added:
+    - `CLIENTPARKADD`
+
+    Subdomain Added:
+    - `CLIENTSUBADD`
+
+    Addon Domain Added:
+    - `CLIENTDOMADD`
+</Callout>
+When the client adds a domain to the account, you will get the following form values:
+```
+username: <vpanel_username>
+status: <domain_code>
+comments: <vpanel_username>
+```
+
+### Domain Removed From Account
+<Callout emoji="ℹ️" type="info">
+    **What are the domain codes?**
+   
+    Parked Domain Removed:
+    - `CLIENTPARKREM`
+
+    Subdomain Removed:
+    - `CLIENTSUBREM`
+
+    Addon Domain Removed:
+    - `CLIENTDOMREM`
+</Callout>
+When the client removes a domain from an account, you will get the following form values:
+```
+username: <vpanel_username>
+status: <domain_code>
 comments: <vpanel_username>
 ```
 
