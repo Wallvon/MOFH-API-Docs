@@ -34,7 +34,7 @@ Then, click on "Update Settings" and everything should be set up!
 
 The following hosting account callbacks are available:
 
-### Account activation
+### Account Activation
 With the account activation callback, you will get the following form values:
 ```
 username: <vpanel_username>
@@ -42,7 +42,7 @@ status: ACTIVATED
 comments: GENERIC ACTIVATION
 ```
 
-### SQL Cluster addition
+### SQL Cluster Addition
 <Callout emoji="ℹ️" type="info">
     **When is the SQL Cluster callback sent?**
     The SQL Cluster callback is generally sent a few seconds after an account has been activated for the first time.
@@ -55,7 +55,7 @@ status: <sql_cluster_id>
 comments: SQL_SERVER
 ```
 
-### Account suspension
+### Account Suspension
 <Callout emoji="ℹ️" type="info">
     **What are the comments that you could receive when an account gets suspended?**
    
@@ -88,7 +88,7 @@ status: SUSPENDED
 comments: <comment> : <reason>
 ```
 
-### Account unsuspension
+### Account Reactivation
 With the account unsuspension callback, you will get the following form values:
 ```
 username: <vpanel_username>
@@ -96,7 +96,7 @@ status: REACTIVATE
 comments: GENERIC REACT
 ```
 
-### Account deletion
+### Account Deletion
 <Callout emoji="ℹ️" type="info">
     **When does an account get auto-deleted?**
     An account usually gets deleted about 60 days after a suspension. In the case that an account went into an auto-idle state it's about 2 days.
@@ -109,7 +109,7 @@ status: DELETE
 comments: <vpanel_username>
 ```
    
-### Domain Added To Account
+### Domain Added to Account
 <Callout emoji="ℹ️" type="info">
     **What are the domain codes?**
    
@@ -129,7 +129,7 @@ status: <domain_code>
 comments: <vpanel_username>
 ```
 
-### Domain Removed From Account
+### Domain Removed from Account
 <Callout emoji="ℹ️" type="info">
     **What are the domain codes?**
    
