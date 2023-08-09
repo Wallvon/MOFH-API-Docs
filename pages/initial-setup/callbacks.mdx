@@ -5,7 +5,7 @@ title: Callbacks
 import { Callout } from 'nextra-theme-docs'
 
 # Callbacks
-The MyOwnFreeHost API allows you to set up a callback URL that will be called when a user accounts gets activated, suspended or unsuspended, or when an SQL cluster gets added to a user. The callback URL is also used for the ticketing system
+The MyOwnFreeHost API allows you to set up a callback URL that will be called when a user account gets activated, suspended or unsuspended, or when an SQL cluster gets added to a user. The callback URL is also used for the ticketing system
 
 ## Setup
 
@@ -13,7 +13,7 @@ The MyOwnFreeHost API allows you to set up a callback URL that will be called wh
 This can be accessed at [https://panel.myownfreehost.net/index.php](https://panel.myownfreehost.net/index.php) and the page should look something like this:
 ![Login page](https://cdn.robert-s.dev/mofh-api-docs/login.png)
 
-And you should be logged in. The dashboard looks something like this:
+And then you should be logged in. The dashboard looks something like this:
 ![Dashboard](https://cdn.robert-s.dev/mofh-api-docs/dashboard.png)
 
 
@@ -21,12 +21,12 @@ And you should be logged in. The dashboard looks something like this:
 This can be done by clicking on the "API" link in the sidebar, and then clicking on "Setup WHM API". Once you have done that, this is what the page should look like:
 ![WHM API page](https://cdn.robert-s.dev/mofh-api-docs/whm_api.png)
 
-Then, select the domain name you want to create the accounts on and click on "Get Keys/ Set allow ip address".
+Then, select the domain name you want to create the accounts on and click "Get Keys/ Set allow ip address".
 
 ### 3. Add the callback URL
 Once you are there, add your callback URL to the "API Callback URL" field. It should look something like this:
 ![Callback URL added](https://cdn.robert-s.dev/mofh-api-docs/callback.png)
-In this example the URL `https://example.com/callback` is used.
+In this example, the URL `https://example.com/callback` is used.
 
 Then, click on "Update Settings" and everything should be set up!
 
@@ -34,7 +34,7 @@ Then, click on "Update Settings" and everything should be set up!
 
 The following hosting account callbacks are available:
 
-### Account activation
+### Account Activation
 With the account activation callback, you will get the following form values:
 ```
 username: <vpanel_username>
@@ -42,7 +42,7 @@ status: ACTIVATED
 comments: GENERIC ACTIVATION
 ```
 
-### SQL Cluster addition
+### SQL Cluster Addition
 <Callout emoji="ℹ️" type="info">
     **When is the SQL Cluster callback sent?**
     The SQL Cluster callback is generally sent a few seconds after an account has been activated for the first time.
@@ -55,7 +55,7 @@ status: <sql_cluster_id>
 comments: SQL_SERVER
 ```
 
-### Account suspension
+### Account Suspension
 <Callout emoji="ℹ️" type="info">
     **What are the comments that you could receive when an account gets suspended?**
    
@@ -66,7 +66,7 @@ comments: SQL_SERVER
     - `CONTENT_VIOLATION`
     - `ABUSE_COMPLAINT`
     - `SPAM_DOMAIN_SIGNUP`
-    - `REQUSTED`
+    - `REQUESTED`
     - `ADMIN_SUSPEND`
     - `ADMIN_CLOSE : <reason>`
     - `RES_CLOSE : <reason>`
@@ -88,15 +88,15 @@ status: SUSPENDED
 comments: <comment> : <reason>
 ```
 
-### Account unsuspension
-With the account unsuspension callback, you will get the following form values:
+### Account Reactivation
+With the account reactivation callback, you will get the following form values:
 ```
 username: <vpanel_username>
 status: REACTIVATE
 comments: GENERIC REACT
 ```
 
-### Account deletion
+### Account Deletion
 <Callout emoji="ℹ️" type="info">
     **When does an account get auto-deleted?**
     An account usually gets deleted about 60 days after a suspension. In the case that an account went into an auto-idle state it's about 2 days.
@@ -109,7 +109,7 @@ status: DELETE
 comments: <vpanel_username>
 ```
    
-### Domain Added To Account
+### Domain Added to Account
 <Callout emoji="ℹ️" type="info">
     **What are the domain codes?**
    
@@ -122,14 +122,15 @@ comments: <vpanel_username>
     Addon Domain Added:
     - `CLIENTDOMADD`
 </Callout>
-When the client adds a domain to the account, you will get the following form values:
+
+When the client adds a domain to an account, you will get the following form values:
 ```
 username: <vpanel_username>
 status: <domain_code>
 comments: <vpanel_username>
 ```
 
-### Domain Removed From Account
+### Domain Removed from Account
 <Callout emoji="ℹ️" type="info">
     **What are the domain codes?**
    
@@ -142,6 +143,7 @@ comments: <vpanel_username>
     Addon Domain Removed:
     - `CLIENTDOMREM`
 </Callout>
+
 When the client removes a domain from an account, you will get the following form values:
 ```
 username: <vpanel_username>
@@ -151,13 +153,13 @@ comments: <vpanel_username>
 
 ## Ticketing System Callbacks
 
-### Account suspension
+### Account Suspension
 <Callout emoji="ℹ️" type="info">
     **Important Note:**
     The callback URL that you entered in the MOFH panel above is the same URL that the ticketing system uses.
 </Callout>
 
-### Ticket response
+### Ticket Response
 With the ticket response callback, you will get one of the following form values:
 
 Type 1 (Support Agent Response):
