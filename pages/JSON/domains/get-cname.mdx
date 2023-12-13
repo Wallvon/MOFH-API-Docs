@@ -1,0 +1,47 @@
+---
+title: Validate domain by CNAME
+---
+
+import { Callout } from 'nextra-theme-docs'
+import { Tab, Tabs } from 'nextra-theme-docs'
+
+# Validate domain by CNAME
+This endpoint allows you to add a domain using CNAME validation instead of DNS validation. It uses a POST request, which is confusing because it's called `getcname`.
+
+## HTTP Endpoint
+
+`POST https://panel.myownfreehost.net/json-api/getcname.php`
+
+## Usage
+
+<Tabs items={['cURL', 'Python']}>
+    <Tab>
+        ```bash
+        curl -X POST -u username:password -d "api_user=username&api_key=password&domain_name=subdomain.example.com" "https://panel.myownfreehost.net/json-api/getcname.php"
+        ```
+    </Tab>
+    <Tab>
+        ```python
+        import requests
+        from requests.auth import HTTPBasicAuth
+
+        url = "https://panel.myownfreehost.net/json-api/getcname.php"
+        data = {'api_user': 'username', 'api_key': 'password', 'domain_name': 'subdomain.example.com'}
+
+        response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
+
+        print(response.text)
+        ```
+    </Tab>
+</Tabs>
+
+
+## Response
+
+<Callout emoji="💡">
+    **The above request returns a plaintext MD5 hash structured like the following:**
+
+    ```
+    73081144a0525fde6ba1b0510684efcf
+    ```
+</Callout>

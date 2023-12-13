@@ -1,0 +1,107 @@
+---
+title: List packages
+---
+
+import { Callout } from 'nextra-theme-docs'
+import { Tab, Tabs } from 'nextra-theme-docs'
+
+# List packages
+This endpoint lists the packages available for the reseller.
+
+
+## HTTP Endpoint
+
+`GET https://panel.myownfreehost.net/json-api/listpkgs.php`
+
+## Usage
+
+<Tabs items={['cURL', 'Python']}>
+    <Tab>
+        ```bash
+        curl -u username:password "https://panel.myownfreehost.net/json-api/listpkgs.php"
+        ```
+    </Tab>
+    <Tab>
+        ```python
+        import requests
+        from requests.auth import HTTPBasicAuth
+
+        url = "https://panel.myownfreehost.net/json-api/listpkgs.php"
+
+        response = requests.get(url, auth=HTTPBasicAuth('username', 'password'))
+
+        print(response.json())
+        ```
+    </Tab>
+</Tabs>
+
+
+## Response
+
+<Callout emoji="💡">
+    **The above request returns JSON structured like the following:**
+
+    ```json
+    {
+        "package": [
+            {
+                "FRONTPAGE":"n",
+                "CPMOD":"x3",
+                "FEATURELIST":"default",
+                "BWLIMIT":9223372036854775807,
+                "IP":"n",
+                "CGI":"n",
+                "MAXSUB":9999,
+                "name":"Default",
+                "MAXSQL":999,
+                "MAXFTP":"1",
+                "QUOTA":9223372036854775807,
+                "MAXPARK":9999,
+                "HASSHELL":"N",
+                "MAXADDON":9999,
+                "MAXPOP":"10",
+                "MAXLIST":"0",
+                "LANG":"english"
+            },
+            {
+                "FRONTPAGE":"n",
+                "CPMOD":"x3",
+                "FEATURELIST":"default",
+                "BWLIMIT":"9223372036854775807",
+                "IP":"n",
+                "CGI":"n",
+                "MAXSUB":"9999",
+                "name":"Test",
+                "MAXSQL":"999",
+                "MAXFTP":"1",
+                "QUOTA":"9223372036854775807",
+                "MAXPARK":"9999",
+                "HASSHELL":"n",
+                "MAXADDON":"9999",
+                "MAXPOP":"10",
+                "MAXLIST":"0",
+                "LANG":"english"
+            },
+            {
+                "FRONTPAGE":"n",
+                "CPMOD":"x3",
+                "FEATURELIST":"default",
+                "BWLIMIT":"9223372036854775807",
+                "IP":"n",
+                "CGI":"n",
+                "MAXSUB":"9999",
+                "name":"lve0A9SRQo1Cr7HwuqH96DngzvLxn36TYrPB9MpBiuZWE0wtplpv2ecb6lRjRWfvS2iqRMArzWMlh7czbO6YPyJucyxjSEYHC7ZPvn08hsY3ZiE1RSDvxXER1NTprFoAbgT6ZHGvqZYFFvudliUhHp4f3iZGqef6tWVNRhB2D04AwtrDP2zeocoIduHOIuPabEV332vaAdz5Guo4eSAfTlnPBlunXgIkz9XAQK7SLXE0Qrsj2sH5rJOQe8MY3MX_Test",
+                "MAXSQL":"999",
+                "MAXFTP":"1",
+                "QUOTA":"9223372036854775807",
+                "MAXPARK":"9999",
+                "HASSHELL":"n",
+                "MAXADDON":"9999",
+                "MAXPOP":"10",
+                "MAXLIST":"0",
+                "LANG":"english"
+            }
+        ]
+    }
+    ```
+</Callout>
