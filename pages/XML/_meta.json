@@ -1,5 +1,7 @@
 {
   "authentication": "Authentication",
+  "information": "Information",
   "accounts": "Accounts",
-  "domains": "Domains"
+  "domains": "Domains",
+  "tickets": "Tickets"
 }

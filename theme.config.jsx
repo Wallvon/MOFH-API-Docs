@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { useConfig } from "nextra-theme-docs";
 
 export default {
@@ -13,15 +12,15 @@ export default {
     editLink: {
         text: 'Edit this page on GitHub'
     },
-    banner: {
-        key: 'change-package-api-docs-available',
-        text: <>
-            🎉 Change package API documentation is now available! <Link href="/changelog" style={{textDecoration: 'underline'}}>Changelog...</Link>
-        </>,
-        dismissible: true
-    },
+    // banner: {
+    //     key: 'change-package-api-docs-available',
+    //     text: <>
+    //         🎉 Change package API documentation is now available! <Link href="/changelog" style={{textDecoration: 'underline'}}>Changelog...</Link>
+    //     </>,
+    //     dismissible: true
+    // },
     sidebar: {
-        defaultMenuCollapseLevel: 0
+        defaultMenuCollapseLevel: 1
     },
     useNextSeoProps() {
         const { frontMatter } = useConfig()
@@ -50,16 +49,11 @@ export default {
     },
     darkMode: true,
     primaryHue: 290,
-    // footer: {
-    //     component: <div
-    //         className="nx-mx-auto nx-flex nx-max-w-[90rem] nx-justify-center nx-py-12 nx-text-gray-600 dark:nx-text-gray-400 md:nx-justify-start nx-pl-[max(env(safe-area-inset-left),1.5rem)] nx-pr-[max(env(safe-area-inset-right),1.5rem)]">MIT {new Date().getFullYear()} © <a href="https://robert-s.dev" target="_blank" rel="noopener noreferrer">Robert S. & Contributors</a>
-    //     </div>
-    // },
     footer: {
         component: <footer className="nx-bg-gray-100 nx-pb-[env(safe-area-inset-bottom)] dark:nx-bg-neutral-900">
             <hr className="dark:nx-border-neutral-800" />
-            <div className="nx-mx-auto nx-flex nx-max-w-[90rem] nx-justify-center nx-py-12 nx-text-gray-600 dark:nx-text-gray-400 md:nx-justify-start nx-pl-[max(env(safe-area-inset-left),1.5rem)] nx-pr-[max(env(safe-area-inset-right),1.5rem)]">
-                MIT {new Date().getFullYear()} ©&nbsp;<a href="https://robert-s.dev" target="_blank" rel="noopener noreferrer">Robert S.</a>
+            <div className="nx-mx-auto nx-max-w-[90rem] nx-justify-center nx-py-12 nx-text-gray-600 dark:nx-text-gray-400 md:nx-justify-start nx-pl-[max(env(safe-area-inset-left),1.5rem)] nx-pr-[max(env(safe-area-inset-right),1.5rem)]">
+                MIT {new Date().getFullYear()} ©&nbsp;<a href="https://robert-s.dev" target="_blank" rel="noopener noreferrer">Robert S.</a> & <a href="https://github.com/Wallvon/MOFH-API-Docs/graphs/contributors" target="_blank" rel="noopener noreferrer">Contributors</a>
             </div>
         </footer>
     },

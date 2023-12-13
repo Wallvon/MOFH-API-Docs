@@ -22,7 +22,7 @@ This endpoint gets the domains connected to a user's vPanel account.
 <Tabs items={['cURL', 'Python']}>
     <Tab>
         ```bash
-        curl -X POST -u username:password -d "api_user=username&api_key=password&username=hname_12345678" "https://panel.myownfreehost.net/json-api/getuserdomains.php"
+        curl -X POST -u username:password -d "api_user=username&api_key=password&username=hname_12345678" "https://panel.myownfreehost.net/xml-api/getuserdomains.php"
         ```
     </Tab>
     <Tab>
@@ -30,7 +30,7 @@ This endpoint gets the domains connected to a user's vPanel account.
         import requests
         from requests.auth import HTTPBasicAuth
 
-        url = "https://panel.myownfreehost.net/json-api/getuserdomains.php"
+        url = "https://panel.myownfreehost.net/xml-api/getuserdomains.php"
         data = {'api_user': 'username', 'api_key': 'password', 'username': 'hname_12345678'}
 
         response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))

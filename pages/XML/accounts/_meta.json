@@ -3,6 +3,6 @@
   "suspend": "Suspend",
   "unsuspend": "Unsuspend",
   "remove": "Remove",
-  "change-password": "Change Password",
-  "change-package": "Change Package"
+  "change-password": "Change password",
+  "change-package": "Change package"
 }
