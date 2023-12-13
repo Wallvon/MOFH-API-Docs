@@ -17,7 +17,7 @@ This endpoint allows you to add a domain using CNAME validation instead of DNS v
 <Tabs items={['cURL', 'Python']}>
     <Tab>
         ```bash
-        curl -X POST -u username:password -d "api_user=username&api_key=password&domain=subdomain.example.com" "https://panel.myownfreehost.net/json-api/getcname.php"
+        curl -X POST -u username:password -d "api_user=username&api_key=password&domain_name=subdomain.example.com" "https://panel.myownfreehost.net/json-api/getcname.php"
         ```
     </Tab>
     <Tab>
@@ -26,7 +26,7 @@ This endpoint allows you to add a domain using CNAME validation instead of DNS v
         from requests.auth import HTTPBasicAuth
 
         url = "https://panel.myownfreehost.net/json-api/getcname.php"
-        data = {'api_user': 'username', 'api_key': 'password', 'domain': 'subdomain.example.com'}
+        data = {'api_user': 'username', 'api_key': 'password', 'domain_name': 'subdomain.example.com'}
 
         response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
 
