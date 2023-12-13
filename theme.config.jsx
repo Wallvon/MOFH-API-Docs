@@ -27,28 +27,27 @@ export default {
         const { route, asPath } = useRouter()
         return {
             titleTemplate: (route !== '/' ? '%s – MyOwnFreeHost API Documentation' : 'MyOwnFreeHost API Documentation'),
+            title: frontMatter.title,
             description:
                 frontMatter.description || "API Documentation for iFastNet's MyOwnFreeHost.",
             twitter: {
                 cardType: 'summary_large_image',
                 site: `https://api.myownfreehost.net${asPath}`
             },
+            themeColor: '#FF5274',
+            keywords: 'MyOwnFreeHost,MOFH,iFastNet,VistaPanel,vPanel,FreeHosting,Documentation,API',
+            author: 'Robert S. & Contributors',
             additionalMetaTags: [
-                { content: 'en', httpEquiv: 'Content-Language' },
-                { content: 'MyOwnFreeHost,MOFH,iFastNet,VistaPanel,vPanel,FreeHosting,Documentation,API', name: `keywords` },
-                { content: 'Robert S. & Contributors', name: `author` },
-                { content: 'MOFH API Docs', name: 'apple-mobile-web-app-title' },
-                { content: '#ff5274', name: 'msapplication-TileColor' },
-                { content: `https://api.myownfreehost.net${asPath}`, name: `og:url` },
-                { content: frontMatter.title || 'MyOwnFreeHost API Documentation', name: `og:title` },
-                { content: "API Documentation for iFastNet's MyOwnFreeHost.", name: `og:description` },
-                { content: 'https://myownfreehost.net/assets/images/logo.png', name: `og:image` },
-                { content: '#ff5274', name: `theme-color` },
+                { httpEquiv: 'Content-Language', content: 'en' },
+                { name: 'og:url', content: `https://api.myownfreehost.net${asPath}` },
+                { name: 'og:image', content: 'https://api.myownfreehost.net/images/logo/logo.png' },
+                { name: 'apple-mobile-web-app-title', content: 'MyOwnFreeHost API Documentation' },
+                { name: 'msapplication-TileColor', content: '#FF5274' },
             ],
         }
     },
     darkMode: true,
-    primaryHue: 290,
+    primaryHue: 340,
     footer: {
         component: <footer className="nx-bg-gray-100 nx-pb-[env(safe-area-inset-bottom)] dark:nx-bg-neutral-900">
             <hr className="dark:nx-border-neutral-800" />
@@ -63,10 +62,34 @@ export default {
                 version="1.0"
                 xmlns="http://www.w3.org/2000/svg"
                 height="40"
-                viewBox="0 0 259 90"
+                viewBox="0 0 250 76"
                 fill="currentColor"
             >
-                <path d="M181.5 8.2c-6 2.1-11.9 7.4-15.2 13.8-2.1 3.8-2.2 5.4-2.3 32.5l-.1 28.5H175V52h22V40h-22v-3.8c0-5.1 3.7-12.2 7.9-14.9 2.5-1.7 4.9-2.3 8.7-2.3h5.4V7l-6.2.1c-3.5 0-7.6.5-9.3 1.1zM200 45v38h10.8l.4-15.9c.3-14.3.5-16.2 2.4-18.8 7.3-9.8 19.5-9.8 26.8 0 1.9 2.6 2.1 4.5 2.4 18.8l.3 15.9H254V65.7c0-14.6-.3-17.8-1.9-21.3-2.4-5.3-7.7-10.5-13.3-13.3-6-2.9-17.2-2.9-22.8-.1-2.2 1.1-4.2 2-4.5 2-.3 0-.5-5.9-.5-13V7h-11v38zM19.2 31.6C13.3 34.5 9.6 38.5 6.6 45c-1.7 3.8-2.1 7-2.4 21.2L3.8 83H16V68.3c0-12.7.3-15.2 2-18.7 2.8-5.7 6.3-7.9 13-8.4 4.5-.3 6.1 0 8.9 2 6.6 4.4 7.6 7.4 7.9 24.5l.4 15.3h10.6l.4-15.9c.3-14.3.5-16.2 2.4-18.8 7.3-9.8 19.5-9.8 26.8 0 1.9 2.6 2.1 4.5 2.4 18.8l.4 15.9h10.9l-.3-18.3-.3-18.3-3.2-4.9c-1.8-2.8-5.5-6.6-8.4-8.5-4.6-3.1-6-3.5-13.1-3.9-9.4-.4-14.6 1.2-20.1 6.3l-3.6 3.3-2.7-2.8c-7-7.3-21.2-9.3-31.2-4.3zM121.4 30.9c-5.2 2.4-11.1 8.3-13.5 13.5-2.9 6.4-2.2 22.9 1 25.6.3.3 1.8 2.1 3.3 4.1 4.2 5.7 11.6 8.9 20.4 8.9 8.6 0 13-1.7 18.9-7.1 6.2-5.7 8.8-12.4 8.3-21.3-.2-4-1.2-8.7-2.2-10.7-2.4-5-7.9-10.4-13.2-12.8-5.8-2.8-17.2-2.8-23-.2zm17.8 11.2c12.4 6.6 12.4 21.5.1 27.8-3.3 1.7-10.4 1.3-14.3-.8-3.8-2-8-8.8-8-13.1 0-4.3 4.2-11.1 8-13.1 3.9-2.1 11-2.5 14.2-.8z"/>
+                <g
+                    transform="translate(0.000000,76.000000) scale(0.050000,-0.050000)"
+                    stroke="none"
+                    fill="currentColor"
+                >
+                    <path d="M3574 1491 c-110 -39 -207 -111 -266 -195 -100 -142 -106 -188 -107
+                             -761 l-1 -535 110 0 110 0 0 320 0 320 210 0 210 0 0 110 0 110 -210 0 -210 0
+                             0 91 c0 197 119 329 311 345 l109 9 0 107 0 108 -95 -1 c-52 0 -129 -13 -171
+                             -28z"
+                    />
+                    <path d="M3920 760 l0 -760 109 0 108 0 7 329 c8 425 66 521 316 521 253 0
+                             320 -111 320 -533 l0 -317 110 0 110 0 -2 325 c-1 350 -11 401 -109 539 -138
+                             194 -455 271 -664 160 l-85 -45 0 271 0 270 -110 0 -110 0 0 -760z"
+                    />
+                    <path d="M361 1047 c-255 -94 -341 -279 -341 -731 l0 -316 110 0 110 0 0 317
+                             c0 421 67 533 318 533 251 0 322 -121 322 -548 l0 -302 110 0 110 0 0 317 c0
+                             422 67 533 320 533 253 0 320 -111 320 -533 l0 -317 110 0 110 0 0 305 c0 343
+                             -14 412 -106 547 -178 263 -549 298 -813 76 l-63 -54 -64 61 c-140 132 -370
+                             179 -553 112z"
+                    />
+                    <path d="M2409 1053 c-328 -126 -460 -473 -296 -775 263 -484 995 -292 997
+                             262 1 366 -373 640 -701 513z m347 -247 c262 -194 145 -576 -176 -576 -348 0
+                             -447 456 -130 603 80 37 239 23 306 -27z"
+                    />
+                </g>
             </svg>
         </>
     ),
