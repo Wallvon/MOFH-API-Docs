@@ -7,6 +7,7 @@ const withNextra = require('nextra')({
     // optional: add `unstable_staticImage: true` to enable Nextra's auto image import
 })
 module.exports = withNextra({
+    output: 'export',
     reactStrictMode: true,
     images: {
         unoptimized: true,
