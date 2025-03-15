@@ -10,8 +10,22 @@ import { Callout } from 'nextra-theme-docs'
     The MyOwnFreeHost API doesn't use any error codes, and will <u>**always**</u> return a 200 HTTP code. This is less than ideal, but it is what it is.
 </Callout>
 
-To do proper error handling, you would have to get the text inside the `<status></status>` tags to get the status of your request (either `0` or `1`). Or, if you use the `getuserdomains.php` and `getdomainuser.php` endpoints, you will see that it just returns `null` instead of the list/array it usually gives.
+## Ticket Creation
 
-<Callout type="info" emoji="ℹ️">
-    More in-depth error messages will be added soon™️.
-</Callout>
+The best way to check for errors when creating tickets is checking the return string to see if it contains `SUCCESS :`. If it does, the creation was successful, if it does not, the reason failed and the string contains the error message.
+
+## Ticket Reply
+
+Similar to ticket creation, check to see if the return string is exactly `SUCCESS` (Be sure to use PHP's `trim()`, Python's `.strip()`, etc). If the string is not exactly "SUCCESS", the request failed and the string contains the error.
+
+## "Information" Endpoints
+
+No good way to detect errors, you probably don't ever need to run these on production / live environment anyways.
+
+## "Accounts" Endpoints
+
+Take a look inside `"result" -> "status"` (for JSON API) or the `<status>` tag (XML API). Runs `trim()`, `.strip(), then check if the result is `1`(Don't use strict comparison, or cast to `int` first). If status is not 1, the error can (usually) be found in `"result" -> "statusmsg"` / `<statusmsg>`.
+
+## "Domains" Endpoints
+
+These are all different, see the endpoint's page for additional information on what each one returns
