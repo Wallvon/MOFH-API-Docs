@@ -12,20 +12,20 @@ import { Callout } from 'nextra-theme-docs'
 
 ## Ticket Creation
 
-Check the returned string to see if it contains `SUCCESS :`. If it does, the ticket creation was successful, if it does not, the request failed and the string contains the error message.
+Check the returned string to see if it contains `SUCCESS :`. If it does, the ticket creation was successful. If it does not, the request failed and the string contains the error message.
 
 ## Ticket Reply
 
-Check to see if the returned string is exactly `SUCCESS` (Be sure to use PHP's `trim()`, Python's `.strip()`, etc first). If the string is not exactly "SUCCESS", the request failed and the string contains the error.
+Check to see if the returned string is exactly `SUCCESS` (be sure to use PHP's `trim()`, Python's `.strip()`, etc. first). If the string is not exactly "SUCCESS", the request failed and the string contains the error.
 
 ## "Information" Endpoints
 
-No good way to detect errors, you probably don't ever need to run these on production / live environment anyways.
+No good way to detect errors, you probably don't ever need to run these on production/live environment anyways.
 
 ## "Accounts" Endpoints
 
-Take a look inside `"result" -> "status"` (for JSON API) or the `<status>` tag (XML API). Run `trim()`/`.strip()`/etc, then check if the result is `1`(Don't use strict comparison, or cast to `int` first). If status is not 1, the error can (usually) be found in `"result" -> "statusmsg"` (JSON) or `<statusmsg>` (XML).
+Take a look inside `"result" -> "status"` (JSON API) or the `<status>` tag (XML API). Run `trim()`/`.strip()`/etc., then check if the result is `1` (don't use strict comparison, or cast to `int` first). If status is not 1, the error can (usually) be found in `"result" -> "statusmsg"` (JSON API) or `<statusmsg>` (XML API).
 
 ## "Domains" Endpoints
 
-These are all different, see the endpoint's page for additional information on what each one returns.
+These are all different. See the endpoint's page for additional information on what each one returns.
