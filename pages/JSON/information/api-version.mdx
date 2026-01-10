@@ -15,10 +15,14 @@ This endpoint gets the current API version.
 
 ## Usage
 
+<Callout emoji="ℹ️" type="info">
+    This API Call does not require authentication.
+</Callout>
+
 <Tabs items={['cURL', 'Python']}>
     <Tab>
         ```bash
-        curl -u username:password "https://panel.myownfreehost.net/json-api/version.php"
+        curl "https://panel.myownfreehost.net/json-api/version.php"
         ```
     </Tab>
     <Tab>
@@ -28,7 +32,7 @@ This endpoint gets the current API version.
 
         url = "https://panel.myownfreehost.net/json-api/version.php"
 
-        response = requests.get(url, auth=HTTPBasicAuth('username', 'password'))
+        response = requests.get(url)
 
         print(response.json())
         ```
