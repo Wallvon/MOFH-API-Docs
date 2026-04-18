@@ -1,8 +1,0 @@
-{
-  "create": "Create",
-  "suspend": "Suspend",
-  "unsuspend": "Unsuspend",
-  "remove": "Remove",
-  "change-password": "Change password",
-  "change-package": "Change package"
-}

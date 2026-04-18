@@ -1,0 +1,9 @@
+const pages = {
+  authentication: "Authentication",
+  information: "Information",
+  accounts: "Accounts",
+  domains: "Domains",
+  tickets: "Tickets",
+};
+
+export default pages;

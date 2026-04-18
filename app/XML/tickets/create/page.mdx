@@ -1,0 +1,49 @@
+---
+title: Create ticket
+---
+
+import { Callout } from "nextra/components";
+import { Tabs } from "nextra/components";
+
+# Create ticket
+
+This endpoint creates a new ticket for the specified user.
+
+## HTTP Endpoint
+
+`POST https://panel.myownfreehost.net/xml-api/supportnewticket.php`
+
+## Usage
+
+<Tabs items={['cURL', 'Python']}>
+    <Tabs.Tab>
+        ```bash
+        curl -X POST -u username:password -d "api_user=username&api_key=password&domain_name=subdomain.example.com" -F domain_name=subdomain.example.com -F clientusername=hname_12345678 -F subject=Testing -F comments=Test -F ipaddress=1.1.1.1 "https://panel.myownfreehost.net/xml-api/supportnewticket.php"
+        ```
+    </Tabs.Tab>
+    <Tabs.Tab>
+        ```python
+        import requests
+        from requests.auth import HTTPBasicAuth
+
+        url = "https://panel.myownfreehost.net/xml-api/supportnewticket.php"
+        data = {'api_user': 'example', 'api_key': 'password', 'domain_name': 'subdomain.example.com'}
+        form_data = {'domain_name': 'subdomain.example.com', 'clientusername': 'hname_12345678', 'subject': 'Testing', 'comments': 'Test', 'ipaddress': '1.1.1.1'}
+
+        response = requests.post(url, params=data, files=form_data, auth=HTTPBasicAuth('username', 'password'))
+        print(response.text)
+        ```
+    </Tabs.Tab>
+
+</Tabs>
+
+## Response
+
+<Callout emoji="💡">
+    **The above request returns text structured like the following:**
+
+    ```
+    SUCCESS : 000000
+    ```
+
+</Callout>

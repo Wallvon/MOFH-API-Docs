@@ -1,0 +1,54 @@
+---
+title: Get API version
+---
+
+import { Callout } from "nextra/components";
+import { Tabs } from "nextra/components";
+
+# Get API version
+
+This endpoint gets the current API version.
+
+## HTTP Endpoint
+
+`GET https://panel.myownfreehost.net/json-api/version.php`
+
+## Usage
+
+<Callout emoji="ℹ️" type="info">
+  This API Call does not require authentication.
+</Callout>
+
+<Tabs items={['cURL', 'Python']}>
+    <Tabs.Tab>
+        ```bash
+        curl "https://panel.myownfreehost.net/json-api/version.php"
+        ```
+    </Tabs.Tab>
+    <Tabs.Tab>
+        ```python
+        import requests
+        from requests.auth import HTTPBasicAuth
+
+        url = "https://panel.myownfreehost.net/json-api/version.php"
+
+        response = requests.get(url)
+
+        print(response.json())
+        ```
+    </Tabs.Tab>
+
+</Tabs>
+
+## Response
+
+<Callout emoji="💡">
+    **The above request returns JSON structured like the following:**
+
+    ```json
+    {
+        "version": "11.40.4"
+    }
+    ```
+
+</Callout>
