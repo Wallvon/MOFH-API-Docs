@@ -13,8 +13,10 @@
     "next": "16.2.4",
     "nextra": "^4.6.1",
     "nextra-theme-docs": "^4.6.1",
+    "postcss": "^8.5.10",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "react-feather": "^2.0.10"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

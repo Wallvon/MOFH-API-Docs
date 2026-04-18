@@ -13,7 +13,7 @@ export default function NotFound() {
           className="x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font] x:mt-[1.25em]"
           href="/"
         >
-          Return to home?
+          Return home?
         </Link>
       </p>
     </NotFoundPage>

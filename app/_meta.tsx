@@ -1,5 +1,9 @@
-const pages = {
+import type { MetaRecord } from "nextra";
+
+const meta: MetaRecord = {
   index: "Introduction",
+  apiWrappers: "API Wrappers",
+  limitations: "Limitations",
   initialSetup: "Initial Setup",
   JSON: "JSON API",
   XML: "XML API",
@@ -7,4 +11,4 @@ const pages = {
   changelog: "Changelog",
 };
 
-export default pages;
+export default meta;

@@ -3,6 +3,7 @@ import { Footer, Layout, Navbar } from "nextra-theme-docs";
 import { Banner, Head } from "nextra/components";
 import { getPageMap } from "nextra/page-map";
 import "nextra-theme-docs/style.css";
+import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://api.myownfreehost.net"),
@@ -154,6 +155,7 @@ export default async function RootLayout({
           banner={banner}
           navbar={navbar}
           pageMap={await getPageMap()}
+          sidebar={{ autoCollapse: false, defaultMenuCollapseLevel: 1 }}
           docsRepositoryBase="https://github.com/Wallvon/MOFH-API-Docs/tree/main"
           footer={footer}
         >
