@@ -111,7 +111,7 @@ const navbar = (
 );
 const footer = (
   <Footer>
-    MIT {new Date().getFullYear()} ©&nbsp;
+    MIT {new Date().getFullYear()}&nbsp;©&nbsp;
     <a href="https://robert-s.dev" target="_blank">
       Robert S.
     </a>

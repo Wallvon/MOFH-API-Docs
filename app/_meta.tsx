@@ -8,6 +8,9 @@ const meta: MetaRecord = {
   JSON: "JSON API",
   XML: "XML API",
   errors: "Errors",
+  "#": {
+    type: "separator",
+  },
   changelog: "Changelog",
 };
 
