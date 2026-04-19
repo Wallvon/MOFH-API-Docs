@@ -10,6 +10,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.10",
     "next": "16.2.4",
     "nextra": "^4.6.1",
     "nextra-theme-docs": "^4.6.1",
