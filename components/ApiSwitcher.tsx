@@ -4,7 +4,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { GreenCallout } from "./Callout";
 import useSWR from "swr";
 
-const fetcher = (item: string) => localStorage.getItem(item);
+const fetcher = (item: string) => localStorage.getItem(item) ?? "json";
 
 // Why use SWR for this you may ask?
 // Well, when I tried to use useState and useEffect I kept getting hydration errors.
