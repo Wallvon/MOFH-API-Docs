@@ -17,7 +17,8 @@
     "postcss": "^8.5.10",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "react-feather": "^2.0.10"
+    "react-feather": "^2.0.10",
+    "swr": "^2.4.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

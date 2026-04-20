@@ -1,0 +1,30 @@
+---
+title: Ticket System Callbacks
+description: This is a list of the ticket system callback responses the MyOwnFreeHost API returns
+---
+
+import { Callout } from "nextra/components";
+
+# Ticket System Callbacks
+
+## Ticket Response
+
+With the ticket response callback, you will get one of the following form values:
+
+### Support Agent Response:
+
+```
+callback_type: ticket
+ticket_id: <6-digit number>
+support_reply: <support agent's reply>
+ticket_status: S
+```
+
+### Ticket Closed:
+
+```
+callback_type: ticket
+ticket_id: <6-digit number>
+support_reply: Ticket status changed to Closed at <date>, <time><br><br>Please do reply to this ticket if you have any further queries and we will happily assist.
+ticket_status: C
+```

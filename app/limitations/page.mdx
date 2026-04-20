@@ -5,12 +5,13 @@ description: MyOwnFreeHost API limitations
 
 import { Callout } from "nextra/components";
 import { Table } from "nextra/components";
+import { GreenCallout } from "@/components/Callout";
 
 # Limitations
 
 ## API limitations
 
-The MOFH API is very limited. Whilst you can <i>theoretically</i> do more than what is listed here, and many hosting providers have done more than what is listed here, this cannot be done using the API. You would have to make calls to VPanel directly. As of right now, we don't have any documentation on how to do this.
+The MOFH API is very limited. Whilst you can <i>theoretically</i> do more than what is listed here, and many hosting providers have, this cannot be done using the API. You would have to make calls to VPanel directly. As of right now, we don't have any documentation on how to do this.
 
 ## Account limit
 
@@ -22,7 +23,7 @@ Whilst you _may_ be able to create more accounts, this is not advised. When cont
 
 ## API responses
 
-**Every** request returns a <span className="self-center rounded-lg border text-nowrap px-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-500 border-green-700 x:dark:border-green-800">200 OK</span> status code, even invalid requests. You
+**Every** request returns a <GreenCallout>200 OK</GreenCallout> status code, even invalid requests. You
 need to check the response body to see if the request was successful or not.
 
 ## API SSL certificate

@@ -4,16 +4,38 @@ title: Authentication
 
 import { Callout } from "nextra/components";
 import { Tabs } from "nextra/components";
+import { JsonOnly, XmlOnly } from "@/components/ApiSwitcher";
 
 # Authentication
 
-<Callout type="warning" emoji="⚠️">
+<Callout type="warning">
   You must replace `username` and `password` with your API credentials.
 </Callout>
 
 ## Usage
 
-<Tabs items={['cURL', 'Python']}>
+<JsonOnly>
+  <Tabs items={['cURL', 'Python']}>
+      <Tabs.Tab>
+          ```bash
+          curl -X POST -u username:password "https://panel.myownfreehost.net/json-api/"
+          ```
+      </Tabs.Tab>
+      <Tabs.Tab>
+          ```python highlight=6
+          import requests
+
+          url = "https://panel.myownfreehost.net/json-api/" # This is the base URL
+          data = {}
+
+          response = requests.post(url, params=data, auth=('username' 'password'), verify=False)
+          ```
+      </Tabs.Tab>
+
+  </Tabs>
+</JsonOnly>
+<XmlOnly>
+  <Tabs items={['cURL', 'Python']}>
     <Tabs.Tab>
         ```bash
         curl -X POST -u username:password "https://panel.myownfreehost.net/xml-api/"
@@ -30,10 +52,11 @@ import { Tabs } from "nextra/components";
         ```
     </Tabs.Tab>
 
-</Tabs>
+  </Tabs>
+</XmlOnly>
 
 MyOwnFreeHost uses API credentials to allow access to the API. You can get them [here](https://panel.myownfreehost.net/panel/index2.php?option=api).
 
-<Callout type="error" emoji="❗️">
+<Callout type="error">
   <u>**All**</u> API requests must be authenticated.
 </Callout>
