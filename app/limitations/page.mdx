@@ -3,20 +3,21 @@ title: Limitations
 description: MyOwnFreeHost API limitations
 ---
 
-import { Callout } from "nextra/components";
-import { Table } from "nextra/components";
+import { Callout, Table } from "nextra/components";
+import { JsonOnly, XmlOnly } from "@/components/ApiSwitcher";
 import { GreenCallout } from "@/components/Callout";
 
 # Limitations
 
 ## API limitations
 
-The MOFH API is very limited. Whilst you can <i>theoretically</i> do more than what is listed here, and many hosting providers have, this cannot be done using the API. You would have to make calls to VPanel directly. As of right now, we don't have any documentation on how to do this.
+The MyOwnFreeHost API is very limited. Whilst you can <i>theoretically</i> do more than what is listed here, and many hosting providers have, this cannot be done using the API. You would have to make calls to VPanel directly. As of right now, we don't have any documentation on how to do this.
 
 ## Account limit
 
 <Callout type="error">
-  You are allowed to create up to **3** accounts per person with the MOFH API.
+  You are allowed to create up to **3** accounts per person with the
+  MyOwnFreeHost API.
 </Callout>
 
 Whilst you _may_ be able to create more accounts, this is not advised. When contacted, the iFastNet team also said that there was a limit of 3 accounts per person. **If you do create more, please be wary of the risks.**
@@ -45,11 +46,45 @@ need to check the response body to see if the request was successful or not.
   </thead>
   <tbody>
     <Table.Tr>
-      <Table.Td>`https://panel.myownfreehost.net/xml-api/`</Table.Td>
+      <Table.Td>
+        <JsonOnly>
+          {/* prettier-ignore */}
+          <code>
+          ```console copy
+          https://panel.myownfreehost.net/json-api/
+          ```
+        </code>
+        </JsonOnly>
+        <XmlOnly>
+          {/* prettier-ignore */}
+          <code>
+          ```console copy filename="Text"
+          https://panel.myownfreehost.net/xml-api/
+          ```
+        </code>
+        </XmlOnly>
+      </Table.Td>
       <Table.Td>Recommended API domain.</Table.Td>
     </Table.Tr>
     <Table.Tr>
-      <Table.Td>`https://panel.myownfreehost.net:2087/xml-api/`</Table.Td>
+      <Table.Td>
+        <JsonOnly>
+          {/* prettier-ignore */}
+          <code>
+          ```console copy
+          https://panel.myownfreehost.net:2087/json-api/
+          ```
+        </code>
+        </JsonOnly>
+        <XmlOnly>
+          {/* prettier-ignore */}
+          <code>
+          ```console copy filename="Text"
+          https://panel.myownfreehost.net:2087/xml-api/
+          ```
+        </code>
+        </XmlOnly>
+      </Table.Td>
       <Table.Td>Backup in case normal API domain is down.</Table.Td>
     </Table.Tr>
   </tbody>

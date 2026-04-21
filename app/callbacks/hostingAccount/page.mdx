@@ -1,9 +1,9 @@
 ---
 title: Hosting Account Callbacks
-description: This is a list of the hosting account callback responses the MyOwnFreeHost API returns
+description: List of the hosting account callback responses the MyOwnFreeHost API returns
 ---
 
-import { Callout } from "nextra/components";
+import { Callout, Table } from "nextra/components";
 
 # Hosting Account Callbacks
 
@@ -13,11 +13,39 @@ The following hosting account callbacks are available:
 
 With the account activation callback, you will receive the following form values:
 
-```
-username: <vpanel_username>
-status: ACTIVATED
-comments: GENERIC ACTIVATION
-```
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Value</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`username`</Table.Td>
+      <Table.Td>
+        `<vpanel_username>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`status`</Table.Td>
+      <Table.Td>
+        `ACTIVATED`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`comments`</Table.Td>
+      <Table.Td>
+        `GENERIC ACTIVATION`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
 
 ## SQL Cluster Addition
 
@@ -30,11 +58,39 @@ been activated for the first time.
 
 With the SQL cluster addition callback, you will receive the following form values:
 
-```
-username: <vpanel_username>
-status: <sql_cluster_id>
-comments: SQL_SERVER
-```
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Value</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`username`</Table.Td>
+      <Table.Td>
+        `<vpanel_username>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`status`</Table.Td>
+      <Table.Td>
+        `<sql_cluster_id>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`comments`</Table.Td>
+      <Table.Td>
+        `SQL_SERVER`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
 
 ## Account Suspension
 
@@ -69,21 +125,77 @@ _Inactivity suspension reasons:_
 
 With the account suspension callback, you will receive the following form values:
 
-```
-username: <vpanel_username>
-status: SUSPENDED
-comments: <comment> : <reason>
-```
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Value</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`username`</Table.Td>
+      <Table.Td>
+        `<vpanel_username>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`status`</Table.Td>
+      <Table.Td>
+        `SUSPENDED`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`comments`</Table.Td>
+      <Table.Td>
+        `<comment> : <reason>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
 
 ## Account Reactivation
 
 With the account reactivation callback, you will receive the following form values:
 
-```
-username: <vpanel_username>
-status: REACTIVATE
-comments: GENERIC REACT
-```
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Value</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`username`</Table.Td>
+      <Table.Td>
+        `<vpanel_username>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`status`</Table.Td>
+      <Table.Td>
+        `REACTIVATE`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`comments`</Table.Td>
+      <Table.Td>
+        `GENERIC REACT`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
 
 ## Account Deletion
 
@@ -97,11 +209,39 @@ auto-idle state it's about 2 days.
 
 With the account deletion callback, you will receive the following form values:
 
-```
-username: <vpanel_username>
-status: DELETE
-comments: <vpanel_username>
-```
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Value</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`username`</Table.Td>
+      <Table.Td>
+        `<vpanel_username>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`status`</Table.Td>
+      <Table.Td>
+        `DELETE`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`comments`</Table.Td>
+      <Table.Td>
+        `<vpanel_username>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
 
 ## Domain Added to Account
 
@@ -117,11 +257,39 @@ Addon Domain Added: `CLIENTDOMADD`
 
 When the client adds a domain to an account, you will receive the following form values:
 
-```
-username: <vpanel_username>
-status: <domain_code>
-comments: <the_added_domain>
-```
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Value</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`username`</Table.Td>
+      <Table.Td>
+        `<vpanel_username>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`status`</Table.Td>
+      <Table.Td>
+        `<domain_code>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`comments`</Table.Td>
+      <Table.Td>
+        `<the_added_domain>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
 
 ## Domain Removed from Account
 
@@ -137,8 +305,36 @@ Addon Domain Removed: `CLIENTDOMREM`
 
 When the client removes a domain from an account, you will receive the following form values:
 
-```
-username: <vpanel_username>
-status: <domain_code>
-comments: <the_removed_domain>
-```
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Value</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`username`</Table.Td>
+      <Table.Td>
+        `<vpanel_username>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`status`</Table.Td>
+      <Table.Td>
+        `<domain_code>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`comments`</Table.Td>
+      <Table.Td>
+        `<the_removed_domain>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>

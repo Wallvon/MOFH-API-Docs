@@ -1,30 +1,105 @@
 ---
 title: Ticket System Callbacks
-description: This is a list of the ticket system callback responses the MyOwnFreeHost API returns
+description: List of the ticket system callback responses the MyOwnFreeHost API returns
 ---
 
-import { Callout } from "nextra/components";
+import { Callout, Table } from "nextra/components";
 
 # Ticket System Callbacks
 
-## Ticket Response
+The following ticket system callbacks are available:
 
-With the ticket response callback, you will get one of the following form values:
+## Support Agent Response
 
-### Support Agent Response:
+With the support agent response callback, you will receive the following form values:
 
-```
-callback_type: ticket
-ticket_id: <6-digit number>
-support_reply: <support agent's reply>
-ticket_status: S
-```
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Value</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`callback_type`</Table.Td>
+      <Table.Td>
+        `ticket`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`ticket_id`</Table.Td>
+      <Table.Td>
+        `<6-digit number>`
+      </Table.Td>
+      <Table.Td>integer</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`support_reply`</Table.Td>
+      <Table.Td>
+        `<support agent's reply>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`ticket_status`</Table.Td>
+      <Table.Td>
+        `S`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
 
-### Ticket Closed:
+## Ticket Closed
 
-```
-callback_type: ticket
-ticket_id: <6-digit number>
-support_reply: Ticket status changed to Closed at <date>, <time><br><br>Please do reply to this ticket if you have any further queries and we will happily assist.
-ticket_status: C
-```
+With the ticket closed callback, you will receive the following form values:
+
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Value</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`callback_type`</Table.Td>
+      <Table.Td>
+        `ticket`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`ticket_id`</Table.Td>
+      <Table.Td>
+        `<6-digit number>`
+      </Table.Td>
+      <Table.Td>integer</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`support_reply`</Table.Td>
+      <Table.Td>
+        ```
+        Ticket status changed to Closed at <date>,<time>
+        <br><br>
+        Please do reply to this ticket if you have
+        any further queries and we will happily assist.
+        ```
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`ticket_status`</Table.Td>
+      <Table.Td>
+        `C`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>

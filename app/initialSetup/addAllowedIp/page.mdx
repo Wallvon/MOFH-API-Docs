@@ -3,15 +3,18 @@ title: Add an allowed IP
 description: Add an allowed IP address to the MyOwnFreeHost dashboard to use the API from
 ---
 
-import { Callout } from "nextra/components";
-import { Steps } from "nextra/components";
+import { Callout, Steps, Cards } from "nextra/components";
+import { XCircle, Key } from "react-feather";
 
 # Add an allowed IP
 
 <Callout type="important">
-  The MyOwnFreeHost API requires you to add the IP address of the server you are
-  going to make API requests from.
+  See the [errors](/errors) page for information about any related errors
+  regarding allowed IPs and invalid API keys.
 </Callout>
+
+The MyOwnFreeHost API requires you to add the IP address of the server you are
+going to make API requests from.
 
 ## Setup
 
@@ -45,3 +48,12 @@ Once you are there, add your IP address to the `API Allowed IP Address (main IP 
 Then, click on `Update Settings` and everything should be set up!
 
 </Steps>
+
+---
+
+### Related pages:
+
+<Cards>
+  <Cards.Card icon={<XCircle />} title="Errors" href="/errors" />
+  <Cards.Card icon={<Key />} title="Authentication" href="/authentication" />
+</Cards>

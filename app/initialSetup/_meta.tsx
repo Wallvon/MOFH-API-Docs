@@ -5,10 +5,10 @@ const meta: MetaRecord = {
   addAllowedIp: (
     <div className="flex gap-1.5">
       <RedCallout>REQUIRED</RedCallout>
-      Add allowed IP
+      Add Allowed IP
     </div>
   ),
-  callbacks: "Callbacks",
+  addCallbackURL: "Add Callback URL",
 };
 
 export default meta;

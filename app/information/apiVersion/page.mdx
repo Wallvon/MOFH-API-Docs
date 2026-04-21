@@ -1,52 +1,98 @@
 ---
 title: Get API version
+description: Gets the current MyOwnFreeHost API version
 ---
 
-import { Callout } from "nextra/components";
-import { Tabs } from "nextra/components";
+import { Callout, Tabs } from "nextra/components";
+import { JsonOnly, XmlOnly } from "@/components/ApiSwitcher";
 
 # Get API version
+
+<Callout type="important">
+  This API call does not require authentication.
+</Callout>
 
 This endpoint gets the current API version.
 
 ## HTTP Endpoint
 
-`GET https://panel.myownfreehost.net/json-api/version.php`
+<br />
+<JsonOnly>
+  {/* prettier-ignore */}
+  <code>
+    ```console copy filename="URL"
+    https://panel.myownfreehost.net/json-api/version.php
+    ```
+  </code>
+</JsonOnly>
+<XmlOnly>
+  {/* prettier-ignore */}
+  <code>
+    ```console copy filename="URL"
+    https://panel.myownfreehost.net/xml-api/version.php
+    ```
+  </code>
+</XmlOnly>
 
 ## Usage
 
-<Callout type="info">This API Call does not require authentication.</Callout>
-
-<Tabs items={['cURL', 'Python']}>
-    <Tabs.Tab>
-        ```bash
-        curl "https://panel.myownfreehost.net/json-api/version.php"
-        ```
-    </Tabs.Tab>
-    <Tabs.Tab>
-        ```python
-        import requests
-        from requests.auth import HTTPBasicAuth
+<JsonOnly>
+  <Tabs items={['cURL', 'Python']}>
+      <Tabs.Tab>
+          ```bash copy showLineNumbers filename="Shell"
+          curl "https://panel.myownfreehost.net/json-api/version.php"
+          ```
+      </Tabs.Tab>
+      <Tabs.Tab>
+          ```python copy showLineNumbers filename="Python"
+          import requests
 
         url = "https://panel.myownfreehost.net/json-api/version.php"
 
         response = requests.get(url)
 
         print(response.json())
+          ```
+      </Tabs.Tab>
+
+  </Tabs>
+</JsonOnly>
+<XmlOnly>
+  <Tabs items={['cURL', 'Python']}>
+    <Tabs.Tab>
+        ```bash copy showLineNumbers filename="Shell"
+        curl "https://panel.myownfreehost.net/xml-api/version.php"
+        ```
+    </Tabs.Tab>
+    <Tabs.Tab>
+        ```python copy showLineNumbers filename="Python"
+        import requests
+
+        url = "https://panel.myownfreehost.net/xml-api/version.php"
+
+        response = requests.get(url)
+
+        print(response.text)
         ```
     </Tabs.Tab>
 
-</Tabs>
+  </Tabs>
+</XmlOnly>
 
 ## Response
 
-<Callout emoji="💡">
-    **The above request returns JSON structured like the following:**
-
-    ```json
+<JsonOnly>
+    ```json copy showLineNumbers filename="Response"
     {
         "version": "11.40.4"
     }
     ```
 
-</Callout>
+</JsonOnly>
+<XmlOnly>
+    ```xml copy showLineNumbers filename="Response"
+    <version>
+        <version>11.30.4</version>
+    </version>
+    ```
+</XmlOnly>

@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
     // TODO: Generate dynamic Open Graph images per path on build.
-    images: [{ url: "https://api.myownfreehost.net/images/og.png" }],
+    images: [{ url: "/images/og.png" }],
   },
   other: {
     "msapplication-TileColor": "#FF5274",

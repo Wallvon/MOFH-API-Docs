@@ -1,35 +1,94 @@
 ---
 title: Authentication
+description: How to authenticate with the MyOwnFreeHost API
 ---
 
-import { Callout } from "nextra/components";
-import { Tabs } from "nextra/components";
+import { Callout, Tabs, Cards, Table } from "nextra/components";
+import { XCircle, PlusSquare } from "react-feather";
 import { JsonOnly, XmlOnly } from "@/components/ApiSwitcher";
+import { GreenText } from "@/components/Text";
 
 # Authentication
 
-<Callout type="warning">
+<Callout type="error">
+  <u>**All**</u> API requests, except for requests to
+  [version.php](/information/apiVersion), must be authenticated.
+</Callout>
+
+<Callout type="important">
   You must replace `username` and `password` with your API credentials.
 </Callout>
+
+MyOwnFreeHost uses API credentials to allow access to the API. You can get them [here](https://panel.myownfreehost.net/panel/index2.php?option=api).
+
+## HTTP Endpoint
+
+<br />
+<JsonOnly>
+  {/* prettier-ignore */}
+  <code>
+    ```console copy filename="URL"
+    https://panel.myownfreehost.net/json-api/
+    ```
+  </code>
+</JsonOnly>
+<XmlOnly>
+  {/* prettier-ignore */}
+  <code>
+    ```console copy filename="URL"
+    https://panel.myownfreehost.net/xml-api/
+    ```
+  </code>
+</XmlOnly>
+
+## Parameters
+
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Required</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`username`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`password`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
 
 ## Usage
 
 <JsonOnly>
   <Tabs items={['cURL', 'Python']}>
       <Tabs.Tab>
-          ```bash
-          curl -X POST -u username:password "https://panel.myownfreehost.net/json-api/"
-          ```
+            ```bash copy showLineNumbers filename="Shell"
+            curl -X POST -u username:password "https://panel.myownfreehost.net/json-api/"
+            ```
       </Tabs.Tab>
       <Tabs.Tab>
-          ```python highlight=6
-          import requests
+            ```python copy showLineNumbers filename="Python"
+            import requests
+            from requests.auth import HTTPBasicAuth
 
-          url = "https://panel.myownfreehost.net/json-api/" # This is the base URL
-          data = {}
+            url = "https://panel.myownfreehost.net/json-api/" # This is the base URL
+            data = {}
 
-          response = requests.post(url, params=data, auth=('username' 'password'), verify=False)
-          ```
+            response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
+            ```
       </Tabs.Tab>
 
   </Tabs>
@@ -37,26 +96,34 @@ import { JsonOnly, XmlOnly } from "@/components/ApiSwitcher";
 <XmlOnly>
   <Tabs items={['cURL', 'Python']}>
     <Tabs.Tab>
-        ```bash
-        curl -X POST -u username:password "https://panel.myownfreehost.net/xml-api/"
-        ```
+          ```bash copy showLineNumbers filename="Shell"
+          curl -X POST -u username:password "https://panel.myownfreehost.net/xml-api/"
+          ```
     </Tabs.Tab>
     <Tabs.Tab>
-        ```python
-        import requests
+          ```python copy showLineNumbers filename="Python"
+          import requests
+          from requests.auth import HTTPBasicAuth
 
-        url = "https://panel.myownfreehost.net/xml-api/" # This is the base URL
-        data = {}
+          url = "https://panel.myownfreehost.net/xml-api/" # This is the base URL
+          data = {}
 
-        response = requests.post(url, params=data, auth=('username' 'password'), verify=False)
-        ```
+          response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
+          ```
     </Tabs.Tab>
 
   </Tabs>
 </XmlOnly>
 
-MyOwnFreeHost uses API credentials to allow access to the API. You can get them [here](https://panel.myownfreehost.net/panel/index2.php?option=api).
+---
 
-<Callout type="error">
-  <u>**All**</u> API requests must be authenticated.
-</Callout>
+### Related pages:
+
+<Cards>
+  <Cards.Card icon={<XCircle />} title="Errors" href="/errors" />
+  <Cards.Card
+    icon={<PlusSquare />}
+    title="Add Allowed IP"
+    href="/initialSetup/addAllowedIp"
+  />
+</Cards>

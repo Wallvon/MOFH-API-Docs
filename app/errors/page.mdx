@@ -6,6 +6,7 @@ description: List of errors you could encounter when using the MyOwnFreeHost API
 import { Callout } from "nextra/components";
 import { GreenCallout } from "@/components/Callout";
 import { JsonOnly, XmlOnly } from "@/components/ApiSwitcher";
+import { GreenText } from "@/components/Text";
 
 # Errors
 
@@ -18,13 +19,15 @@ import { JsonOnly, XmlOnly } from "@/components/ApiSwitcher";
   </u>
 </Callout>
 
-Here is a list of errors you could receive when using the MyOwnFreeHost API, sorted by endpoint:
+This page goes over the errors you could encounter when using the MyOwnFreeHost API.
 
 ## General errors
 
 ### IP not in allowed IPs
 
-```json
+When the request IP is not in the allowed IPs, one of two errors may be returned:
+
+```json copy showLineNumbers {4}
 {
   "cpanelresult": {
     "apiversion": "2",
@@ -40,7 +43,7 @@ Here is a list of errors you could receive when using the MyOwnFreeHost API, sor
 
 or
 
-```json
+```json copy showLineNumbers {4}
 {
   "cpanelresult": {
     "apiversion": "2",
@@ -56,7 +59,9 @@ or
 
 ### Invalid API key
 
-```json
+When an invalid API key is supplied, the following error is returned:
+
+```json copy showLineNumbers {4}
 {
   "cpanelresult": {
     "apiversion": "2",
@@ -70,11 +75,15 @@ or
 }
 ```
 
-## Information Endpoints
+## Endpoints
+
+Here is a list of errors you could receive when using the MyOwnFreeHost API, sorted by endpoint type:
+
+### Information (`/information/...`)
 
 There is no good way to detect errors. You probably don't ever need to make calls to these endpoints on a production/live environment anyways.
 
-## Account Endpoints
+### Accounts (`/accounts/...`)
 
 Take a look inside <JsonOnly>`{"result": [{ ..., "status": <status_number> }]}`</JsonOnly><XmlOnly>the `<status>` tag</XmlOnly>. Check if the result is <GreenCallout>1</GreenCallout> (don't use strict comparison, or cast to `int` first).
 
@@ -82,20 +91,20 @@ Take a look inside <JsonOnly>`{"result": [{ ..., "status": <status_number> }]}`<
   If `status` is not <GreenCallout>1</GreenCallout>, the error can (usually) be found in <JsonOnly>`{"result": [{ ..., "statusmsg": <status_message> }]}`</JsonOnly><XmlOnly>`<statusmsg>`</XmlOnly>.
 </Callout>
 
-## Domain Endpoints
+### Domains (`/domains/...`)
 
 These are all different. See the specific endpoint's page for additional information on what each one returns.
 
-## Ticket Endpoints
+### Tickets (`/tickets/...`)
 
-### Ticket Creation
+#### Ticket Creation
 
-Check the returned string to see if it contains `SUCCESS :`.
+Check the returned string to see if it contains <GreenText>`SUCCESS :`</GreenText>.
 
 If it does, the ticket creation was successful. If it does not, the request failed and the string contains the error message.
 
-### Ticket Reply
+#### Ticket Reply
 
-Check to see if the returned string is exactly `SUCCESS` (be sure to use PHP's `trim(){:php}`, Python's `.strip()`, etc. first).
+Check to see if the returned string is exactly <GreenText>`SUCCESS`</GreenText> (be sure to use PHP's `trim(){:php}`, Python's `.strip()`, etc. first).
 
-If the string is not exactly `SUCCESS`, the request failed and the string contains the error.
+If the string is not exactly <GreenText>`SUCCESS`</GreenText>, the request failed and the string contains the error.

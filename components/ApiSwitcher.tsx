@@ -98,3 +98,24 @@ export function XmlOnly({ children }: { children: React.ReactNode }) {
   const { format } = useFormat("api-format");
   return format === "xml" ? <>{children}</> : null;
 }
+
+export function SwitchFormat({
+  className,
+  children,
+}: {
+  className?: string | undefined;
+  children: React.ReactNode;
+}) {
+  const { format, setFormat } = useFormat("api-format");
+  let buttonText = "json";
+
+  if (format === "json") {
+    buttonText = "xml";
+  }
+
+  return (
+    <button className={className} onClick={() => setFormat(buttonText)}>
+      {children ? <>{children}</> : buttonText}
+    </button>
+  );
+}

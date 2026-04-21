@@ -1,47 +1,124 @@
 ---
 title: List packages
+description: Gets the list of packages available for the reseller
 ---
 
-import { Callout } from "nextra/components";
-import { Tabs } from "nextra/components";
+import { Callout, Tabs, Cards, Table } from "nextra/components";
+import { XCircle, Key } from "react-feather";
+import { JsonOnly, XmlOnly, SwitchFormat } from "@/components/ApiSwitcher";
+import { GreenText } from "@/components/Text";
 
 # List packages
+
+<XmlOnly>
+  {/* prettier-ignore */}
+  <Callout type="error">
+    This API endpoint is <u>**broken**</u>. Use The <SwitchFormat className="x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font] cursor-pointer">JSON endpoint</SwitchFormat> instead.
+  </Callout>
+</XmlOnly>
 
 This endpoint lists the packages available for the reseller.
 
 ## HTTP Endpoint
 
-`GET https://panel.myownfreehost.net/json-api/listpkgs.php`
+<br />
+<JsonOnly>
+  {/* prettier-ignore */}
+  <code>
+    ```console copy filename="URL"
+    https://panel.myownfreehost.net/json-api/listpkgs.php
+    ```
+  </code>
+</JsonOnly>
+<XmlOnly>
+  {/* prettier-ignore */}
+  <code>
+    ```console copy filename="URL"
+    https://panel.myownfreehost.net/xml-api/listpkgs.php
+    ```
+  </code>
+</XmlOnly>
+
+## Parameters
+
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Required</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`username`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`password`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
 
 ## Usage
 
-<Tabs items={['cURL', 'Python']}>
+<JsonOnly>
+  <Tabs items={['cURL', 'Python']}>
+      <Tabs.Tab>
+          ```bash copy showLineNumbers filename="Shell"
+          curl -u username:password "https://panel.myownfreehost.net/json-api/listpkgs.php"
+          ```
+      </Tabs.Tab>
+      <Tabs.Tab>
+            ```python copy showLineNumbers filename="Python"
+            import requests
+            from requests.auth import HTTPBasicAuth
+
+            url = "https://panel.myownfreehost.net/json-api/listpkgs.php"
+
+            response = requests.get(url, auth=HTTPBasicAuth('username', 'password'))
+
+            print(response.json())
+            ```
+      </Tabs.Tab>
+
+  </Tabs>
+</JsonOnly>
+<XmlOnly>
+  <Tabs items={['cURL', 'Python']}>
     <Tabs.Tab>
-        ```bash
-        curl -u username:password "https://panel.myownfreehost.net/json-api/listpkgs.php"
+        ```bash copy showLineNumbers filename="Shell"
+        curl -u username:password "https://panel.myownfreehost.net/xml-api/listpkgs.php"
         ```
     </Tabs.Tab>
     <Tabs.Tab>
-        ```python
+        ```python copy showLineNumbers filename="Python"
         import requests
         from requests.auth import HTTPBasicAuth
 
-        url = "https://panel.myownfreehost.net/json-api/listpkgs.php"
+        url = "https://panel.myownfreehost.net/xml-api/listpkgs.php"
 
         response = requests.get(url, auth=HTTPBasicAuth('username', 'password'))
 
-        print(response.json())
+        print(response.text)
         ```
     </Tabs.Tab>
 
-</Tabs>
+  </Tabs>
+</XmlOnly>
 
 ## Response
 
-<Callout emoji="💡">
-    **The above request returns JSON structured like the following:**
-
-    ```json
+<JsonOnly>
+    ```json copy showLineNumbers filename="Response"
     {
         "package": [
             {
@@ -105,4 +182,17 @@ This endpoint lists the packages available for the reseller.
     }
     ```
 
-</Callout>
+</JsonOnly>
+<XmlOnly>
+    ```xml copy filename="Response"
+    ```
+</XmlOnly>
+
+---
+
+### Related pages:
+
+<Cards>
+  <Cards.Card icon={<XCircle />} title="Errors" href="/errors" />
+  <Cards.Card icon={<Key />} title="Authentication" href="/authentication" />
+</Cards>
