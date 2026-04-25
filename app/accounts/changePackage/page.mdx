@@ -1,9 +1,12 @@
 ---
 title: Change package
+description: Changes the package of a vPanel user account
 ---
 
-import { Callout } from "nextra/components";
-import { Tabs } from "nextra/components";
+import { Callout, Tabs, Cards, Table } from "nextra/components";
+import { XCircle, Key } from "react-feather";
+import { JsonOnly, XmlOnly } from "@/components/ApiSwitcher";
+import { GreenText } from "@/components/Text";
 
 # Change package
 
@@ -11,30 +14,112 @@ This endpoint changes the package of the vPanel user account associated with pro
 
 ## HTTP Endpoint
 
-`POST https://panel.myownfreehost.net/json-api/changepackage.php`
+<br />
+<JsonOnly>
+  {/* prettier-ignore */}
+  <code>
+    ```console copy filename="URL"
+    https://panel.myownfreehost.net/json-api/changepackage.php
+    ```
+  </code>
+</JsonOnly>
+<XmlOnly>
+  {/* prettier-ignore */}
+  <code>
+    ```console copy filename="URL"
+    https://panel.myownfreehost.net/xml-api/changepackage.php
+    ```
+  </code>
+</XmlOnly>
+
+## Parameters
+
+<Callout type="important">
+  `user` is the username you provided when creating the user account using
+  [createacct.php](/accounts/create). This is <u>**not**</u> the vPanel username
+  (hname_12345678).
+</Callout>
+
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Required</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`user`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`pkg`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
 
 ## Usage
 
-<Callout type="warning">
-  Your package name must be fully lowercase since otherwise the user will get
-  the "Client is not allocated to a package" package which has the maximum
-  resources.
+<Callout type="important">
+  Your package name <u>**must**</u> be fully lowercase since otherwise the user
+  will get the `Client is not allocated to a package` package which has the
+  maximum resources.
 </Callout>
 
-<Tabs items={['cURL', 'Python']}>
+<JsonOnly>
+  <Tabs items={['cURL', 'Python']}>
+      <Tabs.Tab>
+          ```bash copy showLineNumbers filename="Shell"
+          curl -X POST -u username:password -d "user=example&pkg=myawesomeplan" "https://panel.myownfreehost.net/json-api/changepackage.php"
+          ```
+      </Tabs.Tab>
+      <Tabs.Tab>
+            ```python copy showLineNumbers filename="Python"
+            import requests
+            from requests.auth import HTTPBasicAuth
+            # The JSON API endpoint also returns XML
+            from xml.etree.ElementTree import fromstring, ElementTree # Do this if you only want to get the status code.
+
+            url = "https://panel.myownfreehost.net/json-api/changepackage.php"
+            data = {'user': 'username', 'pkg': 'myawesomeplan'} # Keep in mind that the package name must be fully lowercase.
+
+            response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
+
+            print(response.text)
+
+            # Do this if you only want to get the status code.
+            tree = ElementTree(fromstring(response.content))
+            root = tree.getroot()
+            for child in root:
+                print(child[1].text) # The status code (can either be 0 or 1)
+            ```
+      </Tabs.Tab>
+
+  </Tabs>
+</JsonOnly>
+<XmlOnly>
+  <Tabs items={['cURL', 'Python']}>
     <Tabs.Tab>
-        ```bash
-        curl -X POST -u username:password -d "user=example&pkg=myawesomeplan" "https://panel.myownfreehost.net/json-api/changepackage.php"
+        ```bash copy showLineNumbers filename="Shell"
+        curl -X POST -u username:password -d "user=example&pkg=myawesomeplan" "https://panel.myownfreehost.net/xml-api/changepackage.php"
         ```
     </Tabs.Tab>
     <Tabs.Tab>
-        ```python
+        ```python copy showLineNumbers filename="Python"
         import requests
         from requests.auth import HTTPBasicAuth
-        # iFastNet decided it was a good idea to return XML on a JSON API endpoint.
         from xml.etree.ElementTree import fromstring, ElementTree # Do this if you only want to get the status code.
 
-        url = "https://panel.myownfreehost.net/json-api/changepackage.php"
+        url = "https://panel.myownfreehost.net/xml-api/changepackage.php"
         data = {'user': 'username', 'pkg': 'myawesomeplan'} # Keep in mind that the package name must be fully lowercase.
 
         response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
@@ -49,27 +134,31 @@ This endpoint changes the package of the vPanel user account associated with pro
         ```
     </Tabs.Tab>
 
-</Tabs>
+  </Tabs>
+</XmlOnly>
 
 ## Response
 
-<Callout type="warning">
-  For some reason iFastNet decided it was a good idea to return XML on a JSON
-  API endpoint. This is why the response is in XML.
-</Callout>
+<JsonOnly>
+  <Callout type="error">The JSON API endpoint also returns XML.</Callout>
+</JsonOnly>
 
-<Callout>
-    **The above request returns XML structured like the following:**
+```xml copy filename="Response"
+<changepackage>
+    <result>
+        <rawout>
+        </rawout>
+        <status>1</status>
+        <statusmsg>Account Upgrade/Downgrade Complete for asdfasdf</statusmsg>
+    </result>
+</changepackage>
+```
 
-    ```xml
-    <changepackage>
-        <result>
-            <rawout>
-            </rawout>
-            <status>1</status>
-            <statusmsg>Account Upgrade/Downgrade Complete for asdfasdf</statusmsg>
-        </result>
-    </changepackage>
-    ```
+---
 
-</Callout>
+### Related pages:
+
+<Cards>
+  <Cards.Card icon={<XCircle />} title="Errors" href="/errors" />
+  <Cards.Card icon={<Key />} title="Authentication" href="/authentication" />
+</Cards>

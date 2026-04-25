@@ -3,13 +3,14 @@ title: Hosting Account Callbacks
 description: List of the hosting account callback responses the MyOwnFreeHost API returns
 ---
 
-import { Callout, Table } from "nextra/components";
+import { Callout, Cards, Table } from "nextra/components";
+import { UserPlus, PauseCircle, PlayCircle, UserX } from "react-feather";
 
-# Hosting Account Callbacks
+# Hosting account callbacks
 
 The following hosting account callbacks are available:
 
-## Account Activation
+## Account activation
 
 With the account activation callback, you will receive the following form values:
 
@@ -47,11 +48,11 @@ With the account activation callback, you will receive the following form values
   </tbody>
 </Table>
 
-## SQL Cluster Addition
+## SQL cluster addition
 
 <Callout type="info">
-**When is the SQL Cluster callback sent?**<br />
-The SQL Cluster callback is generally sent a few seconds after an account has
+**When is the SQL cluster callback sent?**<br />
+The SQL cluster callback is generally sent a few seconds after an account has
 been activated for the first time.
 
 </Callout>
@@ -92,7 +93,7 @@ With the SQL cluster addition callback, you will receive the following form valu
   </tbody>
 </Table>
 
-## Account Suspension
+## Account suspension
 
 <Callout type="info">
 **What are the comments that you could receive when an account gets suspended?**
@@ -159,7 +160,7 @@ With the account suspension callback, you will receive the following form values
   </tbody>
 </Table>
 
-## Account Reactivation
+## Account reactivation
 
 With the account reactivation callback, you will receive the following form values:
 
@@ -197,7 +198,7 @@ With the account reactivation callback, you will receive the following form valu
   </tbody>
 </Table>
 
-## Account Deletion
+## Account deletion
 
 <Callout type="info">
 **When does an account get auto-deleted?**<br />
@@ -243,15 +244,15 @@ With the account deletion callback, you will receive the following form values:
   </tbody>
 </Table>
 
-## Domain Added to Account
+## Domain added to account
 
 <Callout type="info">
 **What are the domain codes?**<br />
-Parked Domain Added: `CLIENTPARKADD`
+Parked domain added: `CLIENTPARKADD`
 
-Subdomain Added: `CLIENTSUBADD`
+Subdomain added: `CLIENTSUBADD`
 
-Addon Domain Added: `CLIENTDOMADD`
+Addon domain added: `CLIENTDOMADD`
 
 </Callout>
 
@@ -291,15 +292,15 @@ When the client adds a domain to an account, you will receive the following form
   </tbody>
 </Table>
 
-## Domain Removed from Account
+## Domain removed from account
 
 <Callout type="info">
 **What are the domain codes?**<br />
-Parked Domain Removed: `CLIENTPARKREM`
+Parked domain removed: `CLIENTPARKREM`
 
-Subdomain Removed: `CLIENTSUBDEL`
+Subdomain removed: `CLIENTSUBDEL`
 
-Addon Domain Removed: `CLIENTDOMREM`
+Addon domain removed: `CLIENTDOMREM`
 
 </Callout>
 
@@ -338,3 +339,26 @@ When the client removes a domain from an account, you will receive the following
     </Table.Tr>
   </tbody>
 </Table>
+
+---
+
+### Related pages:
+
+<Cards>
+  <Cards.Card
+    icon={<UserPlus />}
+    title="Create account"
+    href="/accounts/create"
+  />
+  <Cards.Card
+    icon={<PauseCircle />}
+    title="Suspend account"
+    href="/accounts/suspend"
+  />
+  <Cards.Card
+    icon={<PlayCircle />}
+    title="Unsuspend account"
+    href="/accounts/unsuspend"
+  />
+  <Cards.Card icon={<UserX />} title="Remove account" href="/accounts/remove" />
+</Cards>

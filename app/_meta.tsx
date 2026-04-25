@@ -33,7 +33,6 @@ const meta: MetaRecord = {
   "##": {
     type: "separator",
   },
-  JSON: "JSON API",
   XML: "XML API",
   changelog: "Changelog",
 };
