@@ -1,0 +1,59 @@
+---
+title: Get a user's domains
+---
+
+import { Callout } from "nextra/components";
+import { Tabs } from "nextra/components";
+
+# Get a user's domains
+
+This endpoint gets the domains connected to a user's vPanel account.
+
+## HTTP Endpoint
+
+`POST https://panel.myownfreehost.net/xml-api/getuserdomains.php`
+
+## Usage
+
+<Callout type="warning">
+  Make sure to use the username given by vPanel (e.g `hname_12345678`) here and
+  **not** the username you set yourself.
+</Callout>
+
+<Tabs items={['cURL', 'Python']}>
+    <Tabs.Tab>
+        ```bash
+        curl -X POST -u username:password -d "api_user=username&api_key=password&username=hname_12345678" "https://panel.myownfreehost.net/xml-api/getuserdomains.php"
+        ```
+    </Tabs.Tab>
+    <Tabs.Tab>
+        ```python highlight=24-25,27
+        import requests
+        from requests.auth import HTTPBasicAuth
+
+        url = "https://panel.myownfreehost.net/xml-api/getuserdomains.php"
+        data = {'api_user': 'username', 'api_key': 'password', 'username': 'hname_12345678'}
+
+        response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
+
+        print(response.text)
+        ```
+    </Tabs.Tab>
+
+</Tabs>
+
+## Response
+
+<Callout>
+    **The above request returns a list/array structured like the following:**
+
+    On Success:
+    ```
+    [["ACTIVE","subdomain.example.com"]]
+    ```
+    On Error:
+    ```
+    null
+    ```
+
+</Callout>

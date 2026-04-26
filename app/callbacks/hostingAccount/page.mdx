@@ -1,0 +1,364 @@
+---
+title: Hosting Account Callbacks
+description: List of the hosting account callback responses the MyOwnFreeHost API returns
+---
+
+import { Callout, Cards, Table } from "nextra/components";
+import { UserPlus, PauseCircle, PlayCircle, UserX } from "react-feather";
+
+# Hosting account callbacks
+
+The following hosting account callbacks are available:
+
+## Account activation
+
+With the account activation callback, you will receive the following form values:
+
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Value</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`username`</Table.Td>
+      <Table.Td>
+        `<vpanel_username>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`status`</Table.Td>
+      <Table.Td>
+        `ACTIVATED`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`comments`</Table.Td>
+      <Table.Td>
+        `GENERIC ACTIVATION`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+## SQL cluster addition
+
+<Callout type="info">
+**When is the SQL cluster callback sent?**<br />
+The SQL cluster callback is generally sent a few seconds after an account has
+been activated for the first time.
+
+</Callout>
+
+With the SQL cluster addition callback, you will receive the following form values:
+
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Value</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`username`</Table.Td>
+      <Table.Td>
+        `<vpanel_username>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`status`</Table.Td>
+      <Table.Td>
+        `<sql_cluster_id>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`comments`</Table.Td>
+      <Table.Td>
+        `SQL_SERVER`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+## Account suspension
+
+<Callout type="info">
+**What are the comments that you could receive when an account gets suspended?**
+
+_Permanent suspension reasons:_
+
+- `PHISHING`
+- `VIRUS_MALWARE_HOSTING`
+- `NULLED_SCRIPT`
+- `CONTENT_VIOLATION`
+- `ABUSE_COMPLAINT`
+- `SPAM_DOMAIN_SIGNUP`
+- `REQUESTED`
+- `ADMIN_SUSPEND`
+- `ADMIN_CLOSE : <reason>`
+- `RES_CLOSE : <reason>`
+- `OTHER`
+
+_Temporary suspension reasons:_
+
+- `DAILY_IO`
+- `DAILY_HIT`
+- `MYSQL_OVERLOAD`
+
+_Inactivity suspension reasons:_
+
+- `AUTO_IDLE`
+
+</Callout>
+
+With the account suspension callback, you will receive the following form values:
+
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Value</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`username`</Table.Td>
+      <Table.Td>
+        `<vpanel_username>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`status`</Table.Td>
+      <Table.Td>
+        `SUSPENDED`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`comments`</Table.Td>
+      <Table.Td>
+        `<comment> : <reason>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+## Account reactivation
+
+With the account reactivation callback, you will receive the following form values:
+
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Value</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`username`</Table.Td>
+      <Table.Td>
+        `<vpanel_username>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`status`</Table.Td>
+      <Table.Td>
+        `REACTIVATE`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`comments`</Table.Td>
+      <Table.Td>
+        `GENERIC REACT`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+## Account deletion
+
+<Callout type="info">
+**When does an account get auto-deleted?**<br />
+An account usually gets deleted
+about 60 days after a suspension. In the case that an account went into an
+auto-idle state it's about 2 days.
+
+</Callout>
+
+With the account deletion callback, you will receive the following form values:
+
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Value</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`username`</Table.Td>
+      <Table.Td>
+        `<vpanel_username>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`status`</Table.Td>
+      <Table.Td>
+        `DELETE`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`comments`</Table.Td>
+      <Table.Td>
+        `<vpanel_username>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+## Domain added to account
+
+<Callout type="info">
+**What are the domain codes?**<br />
+Parked domain added: `CLIENTPARKADD`
+
+Subdomain added: `CLIENTSUBADD`
+
+Addon domain added: `CLIENTDOMADD`
+
+</Callout>
+
+When the client adds a domain to an account, you will receive the following form values:
+
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Value</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`username`</Table.Td>
+      <Table.Td>
+        `<vpanel_username>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`status`</Table.Td>
+      <Table.Td>
+        `<domain_code>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`comments`</Table.Td>
+      <Table.Td>
+        `<the_added_domain>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+## Domain removed from account
+
+<Callout type="info">
+**What are the domain codes?**<br />
+Parked domain removed: `CLIENTPARKREM`
+
+Subdomain removed: `CLIENTSUBDEL`
+
+Addon domain removed: `CLIENTDOMREM`
+
+</Callout>
+
+When the client removes a domain from an account, you will receive the following form values:
+
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Value</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`username`</Table.Td>
+      <Table.Td>
+        `<vpanel_username>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`status`</Table.Td>
+      <Table.Td>
+        `<domain_code>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`comments`</Table.Td>
+      <Table.Td>
+        `<the_removed_domain>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+---
+
+### Related pages:
+
+<Cards>
+  <Cards.Card
+    icon={<UserPlus />}
+    title="Create account"
+    href="/accounts/create"
+  />
+  <Cards.Card
+    icon={<PauseCircle />}
+    title="Suspend account"
+    href="/accounts/suspend"
+  />
+  <Cards.Card
+    icon={<PlayCircle />}
+    title="Unsuspend account"
+    href="/accounts/unsuspend"
+  />
+  <Cards.Card icon={<UserX />} title="Remove account" href="/accounts/remove" />
+</Cards>

@@ -1,0 +1,227 @@
+---
+title: Create account
+description: Creates a new vPanel user account
+---
+
+import { Callout, Tabs, Cards, Table } from "nextra/components";
+import { XCircle, Key, CornerDownLeft, UserX } from "react-feather";
+import { JsonOnly, XmlOnly } from "@/components/ApiSwitcher";
+import { GreenText } from "@/components/Text";
+
+# Create account
+
+This endpoint creates a new vPanel user account with the provided information.
+
+## HTTP Endpoint
+
+<br />
+<JsonOnly>
+  {/* prettier-ignore */}
+  <code>
+    ```console copy filename="URL"
+    https://panel.myownfreehost.net/json-api/createacct.php
+    ```
+  </code>
+</JsonOnly>
+<XmlOnly>
+  {/* prettier-ignore */}
+  <code>
+    ```console copy filename="URL"
+    https://panel.myownfreehost.net/xml-api/createacct.php
+    ```
+  </code>
+</XmlOnly>
+
+## Parameters
+
+<Callout type="important">`domain` can also be a subdomain.</Callout>
+
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Required</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`username`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`password`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`contactemail`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`domain`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`plan`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+## Usage
+
+<JsonOnly>
+  <Tabs items={['cURL', 'Python']}>
+      <Tabs.Tab>
+          ```bash copy showLineNumbers filename="Shell"
+          curl -X POST -u username:password -d "username=example&password=password&contactemail=example@example.com&domain=subdomain.example.com&plan=MyAwesomePlan" "https://panel.myownfreehost.net/json-api/createacct.php"
+          ```
+      </Tabs.Tab>
+      <Tabs.Tab>
+            ```python copy showLineNumbers filename="Python"
+            import requests
+            from requests.auth import HTTPBasicAuth
+
+            url = "https://panel.myownfreehost.net/json-api/createacct.php"
+            data = {'username': 'example', 'password': 'password', 'contactemail': 'example@example.com', 'domain': 'subdomain.example.com', 'plan': 'MyAwesomePlan'} # If you want to use a domain which is not a subdomain, put that domain in.
+
+            response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
+            print(response.json())
+            # Do this if you only want to get the username.
+            print(response.json()["result"][0]["options"]["vpusername"])
+            # Do this if you only want to get the status code.
+            print(response.json()["result"][0]["status"])
+            ```
+      </Tabs.Tab>
+
+  </Tabs>
+</JsonOnly>
+<XmlOnly>
+  <Tabs items={['cURL', 'Python']}>
+    <Tabs.Tab>
+          ```bash copy showLineNumbers filename="Shell"
+          curl -X POST -u username:password -d "username=example&password=password&contactemail=example@example.com&domain=subdomain.example.com&plan=MyAwesomePlan" "https://panel.myownfreehost.net/xml-api/createacct.php"
+          ```
+    </Tabs.Tab>
+    <Tabs.Tab>
+          ```python copy showLineNumbers filename="Python"
+          import requests
+          from requests.auth import HTTPBasicAuth
+          from xml.etree.ElementTree import fromstring, ElementTree # Do this if you only want to get the username.
+
+          url = "https://panel.myownfreehost.net/xml-api/createacct.php"
+          data = {'username': 'example', 'password': 'password', 'contactemail': 'example@example.com', 'domain': 'subdomain.example.com', 'plan': 'MyAwesomePlan'} # If you want to use a domain which is not a subdomain, put that domain in.
+
+          response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
+
+          print(response.text)
+
+          # Do this if you only want to get the username.
+          tree = ElementTree(fromstring(response.content))
+          root = tree.getroot()
+          for child in root:
+              print(child[0][1].text) # The vPanel and FTP username
+          ```
+    </Tabs.Tab>
+
+  </Tabs>
+</XmlOnly>
+
+## Response
+
+<JsonOnly>
+    ```json copy showLineNumbers filename="Response"
+    {
+      "result": [
+        {
+          "options": {
+            "vpusername": "hname_12345678",
+            "nameserverentry3": null,
+            "nameservera": null,
+            "nameserver4": "ns4.byet.org",
+            "ip": "n",
+            "nameservera4": null,
+            "nameserver": "ns1.byet.org",
+            "package": "package_name",
+            "nameserver2": "ns2.byet.org",
+            "nameservera2": null,
+            "nameserverentry4": null,
+            "nameservera3": "ns3.byet.org",
+            "nameserverentry2": null,
+            "nameserverentry": null,
+            "nameserver3": "ns3.byet.org",
+            "nameserver5": "ns5.byet.org"
+          },
+          "statusmsg": "Account Creation Ok",
+          "rawout": "Account Creation Ok",
+          "status": 1
+        }
+      ]
+    }
+    ```
+
+</JsonOnly>
+<XmlOnly>
+    ```xml copy filename="Response"
+    <createacct>
+        <result>
+              <options>
+                      <ip>n</ip>
+                      <vpusername>hname_12345678</vpusername>
+                      <nameserver>ns1.byet.org</nameserver>
+                      <nameserver2>ns2.byet.org</nameserver2>
+                      <nameserver3/>
+                      <nameserver4/>
+                      <nameservera/>
+                      <nameservera2/>
+                      <nameservera3/>
+                      <nameservera4/>
+                      <nameserverentry/>
+                      <nameserverentry2/>
+                      <nameserverentry3/>
+                      <nameserverentry4/>
+                      <package></package>
+              </options>
+              <rawout>
+              account added to queue to be added
+              </rawout>
+              <status>1</status>
+              <statusmsg>This account has been successfuly created</statusmsg>
+        </result>
+    </createacct>
+    ```
+</XmlOnly>
+
+---
+
+### Related pages:
+
+<Cards>
+  <Cards.Card icon={<UserX />} title="Remove account" href="/accounts/remove" />
+  <Cards.Card icon={<XCircle />} title="Errors" href="/errors" />
+  <Cards.Card icon={<Key />} title="Authentication" href="/authentication" />
+</Cards>
+
+<br />
+
+<Cards.Card
+  icon={<CornerDownLeft />}
+  title="Hosting account callbacks: account activation"
+  href="/callbacks/hostingAccount#account-activation"
+/>
