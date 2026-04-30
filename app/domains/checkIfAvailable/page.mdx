@@ -1,9 +1,12 @@
 ---
 title: Check if a domain is available
+description: Checks if the requested domain name is available
 ---
 
-import { Callout } from "nextra/components";
-import { Tabs } from "nextra/components";
+import { Callout, Tabs, Cards, Table } from "nextra/components";
+import { XCircle, Key } from "react-feather";
+import { JsonOnly, XmlOnly } from "@/components/ApiSwitcher";
+import { GreenText } from "@/components/Text";
 
 # Check if a domain is available
 
@@ -11,39 +14,129 @@ This endpoint checks if the requested domain name is available.
 
 ## HTTP Endpoint
 
-`POST https://panel.myownfreehost.net/json-api/checkavailable.php`
+<br />
+<JsonOnly>
+  {/* prettier-ignore */}
+  <code>
+    ```console copy filename="URL"
+    https://panel.myownfreehost.net/json-api/checkavailable.php
+    ```
+  </code>
+</JsonOnly>
+<XmlOnly>
+  {/* prettier-ignore */}
+  <code>
+    ```console copy filename="URL"
+    https://panel.myownfreehost.net/xml-api/checkavailable.php
+    ```
+  </code>
+</XmlOnly>
+
+## Parameters
+
+<Callout type="important">
+  The API username and key must be provided in both the parameters and basic
+  auth.
+</Callout>
+
+<Callout type="important">`domain` can also be a subdomain.</Callout>
+
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Required</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`api_user`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`api_key`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`domain`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
 
 ## Usage
 
-<Tabs items={['cURL', 'Python']}>
+<JsonOnly>
+  <Tabs items={['cURL', 'Python']}>
+      <Tabs.Tab>
+          ```bash copy showLineNumbers filename="Shell"
+          curl -X POST -u username:password -d "api_user=username&api_key=password&domain=subdomain.example.com" "https://panel.myownfreehost.net/json-api/checkavailable.php"
+          ```
+      </Tabs.Tab>
+      <Tabs.Tab>
+            ```python copy showLineNumbers filename="Python"
+            import requests
+            from requests.auth import HTTPBasicAuth
+
+            url = "https://panel.myownfreehost.net/json-api/checkavailable.php"
+            data = {'api_user': 'username', 'api_key': 'password', 'domain': 'subdomain.example.com'} # If you want to use a domain which is not a subdomain, put that domain in.
+
+            response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
+
+            print(response.json())
+            ```
+      </Tabs.Tab>
+
+  </Tabs>
+</JsonOnly>
+<XmlOnly>
+  <Tabs items={['cURL', 'Python']}>
     <Tabs.Tab>
-        ```bash
-        curl -X POST -u username:password -d "api_user=username&api_key=password&domain=subdomain.example.com" "https://panel.myownfreehost.net/json-api/checkavailable.php"
-        ```
+            ```bash copy showLineNumbers filename="Shell"
+            curl -X POST -u username:password -d "api_user=username&api_key=password&domain=subdomain.example.com" "https://panel.myownfreehost.net/xml-api/checkavailable.php"
+            ```
     </Tabs.Tab>
     <Tabs.Tab>
-        ```python
-        import requests
-        from requests.auth import HTTPBasicAuth
+            ```python copy showLineNumbers filename="Python"
+            import requests
+            from requests.auth import HTTPBasicAuth
 
-        url = "https://panel.myownfreehost.net/json-api/checkavailable.php"
-        data = {'api_user': 'username', 'api_key': 'password', 'domain': 'subdomain.example.com'} # If you want to use a domain which is not a subdomain, put that domain in.
+            url = "https://panel.myownfreehost.net/xml-api/checkavailable.php"
+            data = {'api_user': 'username', 'api_key': 'password', 'domain': 'subdomain.example.com'} # If you want to use a domain which is not a subdomain, put that domain in.
 
-        response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
+            response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
 
-        print(response.json())
-        ```
+            print(response.text)
+            ```
     </Tabs.Tab>
 
-</Tabs>
+  </Tabs>
+</XmlOnly>
 
 ## Response
 
-<Callout>
-    **The above request returns an integer (either 0 or 1):**
+<Callout type="warning">The response is an integer.</Callout>
 
-    ```
-    1
-    ```
+```shell copy showLineNumbers filename="Response"
+1
+```
 
-</Callout>
+---
+
+### Related pages:
+
+<Cards>
+  <Cards.Card icon={<XCircle />} title="Errors" href="/errors" />
+  <Cards.Card icon={<Key />} title="Authentication" href="/authentication" />
+</Cards>

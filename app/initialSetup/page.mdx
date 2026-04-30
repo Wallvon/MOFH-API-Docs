@@ -6,20 +6,28 @@ asIndexPage: true
 
 import { Cards } from "nextra/components";
 import { PlusSquare, Send } from "react-feather";
+import { RedCallout } from "@/components/Callout";
 
 # Initial Setup
 
 ### Pages in this section:
 
-<Cards>
+{/* This is because the required tag messed up the formatting */}
+
+<Cards className="flex! flex-col!">
   <Cards.Card
     icon={<PlusSquare />}
-    title="Add Allowed IP"
+    title={
+      <span className="flex flex-wrap gap-1.5">
+        <RedCallout>REQUIRED</RedCallout> Add Allowed IP
+      </span>
+    }
     href="/initialSetup/addAllowedIp"
   />
   <Cards.Card
     icon={<Send />}
     title="Add Callback URL"
     href="/initialSetup/addCallbackURL"
+    className="flex"
   />
 </Cards>
