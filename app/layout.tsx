@@ -57,9 +57,8 @@ export const metadata: Metadata = {
 };
 
 const banner = (
-  <Banner storageKey="maintenance">
-    ⚠️ This documentation is currently under maintenance. Page content may
-    change.
+  <Banner storageKey="new">
+    🎉 Welcome to the new MyOwnFreeHost API Documentation!
   </Banner>
 );
 const navbar = (
