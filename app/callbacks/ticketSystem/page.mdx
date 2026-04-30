@@ -1,0 +1,105 @@
+---
+title: Ticket System Callbacks
+description: List of the ticket system callback responses the MyOwnFreeHost API returns
+---
+
+import { Callout, Table } from "nextra/components";
+
+# Ticket system callbacks
+
+The following ticket system callbacks are available:
+
+## Support agent response
+
+With the support agent response callback, you will receive the following form values:
+
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Value</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`callback_type`</Table.Td>
+      <Table.Td>
+        `ticket`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`ticket_id`</Table.Td>
+      <Table.Td>
+        `<6-digit number>`
+      </Table.Td>
+      <Table.Td>integer</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`support_reply`</Table.Td>
+      <Table.Td>
+        `<support agent's reply>`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`ticket_status`</Table.Td>
+      <Table.Td>
+        `S`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+## Ticket closed
+
+With the ticket closed callback, you will receive the following form values:
+
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Value</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`callback_type`</Table.Td>
+      <Table.Td>
+        `ticket`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`ticket_id`</Table.Td>
+      <Table.Td>
+        `<6-digit number>`
+      </Table.Td>
+      <Table.Td>integer</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`support_reply`</Table.Td>
+      <Table.Td>
+        ```
+        Ticket status changed to Closed at <date>,<time>
+        <br><br>
+        Please do reply to this ticket if you have
+        any further queries and we will happily assist.
+        ```
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`ticket_status`</Table.Td>
+      <Table.Td>
+        `C`
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>

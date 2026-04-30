@@ -1,0 +1,33 @@
+---
+title: Initial Setup
+description: Get started using the MyOwnFreeHost API
+asIndexPage: true
+---
+
+import { Cards } from "nextra/components";
+import { PlusSquare, Send } from "react-feather";
+import { RedCallout } from "@/components/Callout";
+
+# Initial Setup
+
+### Pages in this section:
+
+{/* This is because the required tag messed up the formatting */}
+
+<Cards className="flex! flex-col!">
+  <Cards.Card
+    icon={<PlusSquare />}
+    title={
+      <span className="flex flex-wrap gap-1.5">
+        <RedCallout>REQUIRED</RedCallout> Add Allowed IP
+      </span>
+    }
+    href="/initialSetup/addAllowedIp"
+  />
+  <Cards.Card
+    icon={<Send />}
+    title="Add Callback URL"
+    href="/initialSetup/addCallbackURL"
+    className="flex"
+  />
+</Cards>

@@ -1,0 +1,161 @@
+---
+title: Validate domain by CNAME
+description: Adds a domain to an account using a CNAME record
+---
+
+import { Callout, Tabs, Cards, Table } from "nextra/components";
+import { XCircle, Key } from "react-feather";
+import { JsonOnly, XmlOnly } from "@/components/ApiSwitcher";
+import { YellowCallout } from "@/components/Callout";
+import { GreenText } from "@/components/Text";
+
+# Validate domain by CNAME
+
+<Callout type="error">
+  You <u>**cannot**</u> create new accounts using a CNAME verified domain name.
+  You can only add a CNAME verified domain name to an existing account.{" "}
+  <u>**This has to be done manually in vPanel.**</u>
+</Callout>
+
+This endpoint allows you to add a domain using CNAME validation instead of DNS validation.
+
+It uses a <YellowCallout>POST</YellowCallout> request, which is confusing because it's called `getcname`.
+
+After using this endpoint, use the hash it returns and add that as a subdomain to your domain. Point this subdomain to `ns1.byet.org`.
+
+## Example
+
+Let's say your domain is `example.com`. You would make a request with `example.com` as value for the `domain` parameter.
+
+This returns a hash. In this case we'll use `73081144a0525fde6ba1b0510684efcf`.
+
+The user would create a subdomain called `73081144a0525fde6ba1b0510684efcf.example.com` and point it to `ns1.byet.org`.
+
+Afterwards, the user can add the domain name to vPanel.
+
+## HTTP Endpoint
+
+<br />
+<JsonOnly>
+  {/* prettier-ignore */}
+  <code>
+    ```console copy filename="URL"
+    https://panel.myownfreehost.net/json-api/getcname.php
+    ```
+  </code>
+</JsonOnly>
+<XmlOnly>
+  {/* prettier-ignore */}
+  <code>
+    ```console copy filename="URL"
+    https://panel.myownfreehost.net/xml-api/getcname.php
+    ```
+  </code>
+</XmlOnly>
+
+## Parameters
+
+<Callout type="important">
+  The API username and key must be provided in both the parameters and basic
+  auth.
+</Callout>
+
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Required</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`api_user`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`api_key`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`domain_name`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+## Usage
+
+<JsonOnly>
+  <Tabs items={['cURL', 'Python']}>
+      <Tabs.Tab>
+          ```bash copy showLineNumbers filename="Shell"
+          curl -X POST -u username:password -d "api_user=username&api_key=password&domain_name=subdomain.example.com" "https://panel.myownfreehost.net/json-api/getcname.php"
+          ```
+      </Tabs.Tab>
+      <Tabs.Tab>
+            ```python copy showLineNumbers filename="Python"
+            import requests
+            from requests.auth import HTTPBasicAuth
+
+            url = "https://panel.myownfreehost.net/json-api/getcname.php"
+            data = {'api_user': 'username', 'api_key': 'password', 'domain_name': 'subdomain.example.com'}
+
+            response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
+
+            print(response.text)
+            ```
+      </Tabs.Tab>
+
+  </Tabs>
+</JsonOnly>
+<XmlOnly>
+  <Tabs items={['cURL', 'Python']}>
+    <Tabs.Tab>
+            ```bash copy showLineNumbers filename="Shell"
+            curl -X POST -u username:password -d "api_user=username&api_key=password&domain_name=subdomain.example.com" "https://panel.myownfreehost.net/xml-api/getcname.php"
+            ```
+    </Tabs.Tab>
+    <Tabs.Tab>
+            ```python copy showLineNumbers filename="Python"
+            import requests
+            from requests.auth import HTTPBasicAuth
+
+            url = "https://panel.myownfreehost.net/xml-api/getcname.php"
+            data = {'api_user': 'username', 'api_key': 'password', 'domain_name': 'subdomain.example.com'}
+
+            response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
+
+            print(response.text)
+            ```
+    </Tabs.Tab>
+
+  </Tabs>
+</XmlOnly>
+
+## Response
+
+<Callout type="warning">The response is a string.</Callout>
+
+```shell copy showLineNumbers filename="Response"
+73081144a0525fde6ba1b0510684efcf
+```
+
+---
+
+### Related pages:
+
+<Cards>
+  <Cards.Card icon={<XCircle />} title="Errors" href="/errors" />
+  <Cards.Card icon={<Key />} title="Authentication" href="/authentication" />
+</Cards>

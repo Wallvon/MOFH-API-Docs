@@ -1,0 +1,6 @@
+User-Agent: *
+Content-Signal: search=yes, ai-train=no
+
+Disallow:
+
+Sitemap: https://api.myownfreehost.net/sitemap.xml

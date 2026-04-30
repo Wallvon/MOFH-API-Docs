@@ -1,0 +1,110 @@
+---
+title: Errors
+description: List of errors you could encounter when using the MyOwnFreeHost API
+---
+
+import { Callout } from "nextra/components";
+import { GreenCallout } from "@/components/Callout";
+import { JsonOnly, XmlOnly } from "@/components/ApiSwitcher";
+import { GreenText } from "@/components/Text";
+
+# Errors
+
+<Callout type="error">
+  The MyOwnFreeHost API doesn't use any error codes, and will <u>**always**</u>{" "}
+  return a <GreenCallout>200 OK</GreenCallout> HTTP code.{" "}
+  <u>
+    **Always read the response body to know if a request was successful or
+    not.**
+  </u>
+</Callout>
+
+This page goes over the errors you could encounter when using the MyOwnFreeHost API.
+
+## General errors
+
+### IP not in allowed IPs
+
+When the request IP is not in the allowed IPs, one of two errors may be returned:
+
+```json copy showLineNumbers {4}
+{
+  "cpanelresult": {
+    "apiversion": "2",
+    "error": "The API username you are using appears to be invalid 1. 0The API username you are using appears to be invalid 2. The API key you are using appears to be invalid 1. . The API key you are using appears to be invalid 2. . ",
+    "data": {
+      "reason": "The API username you are using appears to be invalid 1. 0The API username you are using appears to be invalid 2. The API key you are using appears to be invalid 1. . The API key you are using appears to be invalid 2. . ",
+      "result": "0"
+    },
+    "type": "text"
+  }
+}
+```
+
+or
+
+```json copy showLineNumbers {4}
+{
+  "cpanelresult": {
+    "apiversion": "2",
+    "error": "The API ip address calling (1.1.1.1) does not match the allowed ip address. Please log into your reseller panel and ensure that your server ip address is listed in the 'allowed ip address' option of the api section. . The API ip address calling (1.1.1.1) does not match the allowed ip address. Please log into your reseller panel and ensure that your server ip address is listed in the 'allowed ip address' option of the api section. . ",
+    "data": {
+      "reason": "The API ip address calling (1.1.1.1) does not match the allowed ip address. Please log into your reseller panel and ensure that your server ip address is listed in the 'allowed ip address' option of the api section. . The API ip address calling (1.1.1.1) does not match the allowed ip address. Please log into your reseller panel and ensure that your server ip address is listed in the 'allowed ip address' option of the api section. . ",
+      "result": "0"
+    },
+    "type": "text"
+  }
+}
+```
+
+### Invalid API key
+
+When an invalid API key is supplied, the following error is returned:
+
+```json copy showLineNumbers {4}
+{
+  "cpanelresult": {
+    "apiversion": "2",
+    "error": "The API key you are using appears to be invalid 1. . ",
+    "data": {
+      "reason": "The API key you are using appears to be invalid 1. . ",
+      "result": "0"
+    },
+    "type": "text"
+  }
+}
+```
+
+## Endpoints
+
+Here is a list of errors you could receive when using the MyOwnFreeHost API, sorted by endpoint type:
+
+### Information (`/information/...`)
+
+There is no good way to detect errors. You probably don't ever need to make calls to these endpoints on a production/live environment anyways.
+
+### Accounts (`/accounts/...`)
+
+Take a look inside <JsonOnly>`{"result": [{ ..., "status": <status_number> }]}`</JsonOnly><XmlOnly>the `<status>` tag</XmlOnly>. Check if the result is <GreenCallout>1</GreenCallout> (don't use strict comparison, or cast to `int` first).
+
+<Callout type="info">
+  If `status` is not <GreenCallout>1</GreenCallout>, the error can (usually) be found in <JsonOnly>`{"result": [{ ..., "statusmsg": <status_message> }]}`</JsonOnly><XmlOnly>`<statusmsg>`</XmlOnly>.
+</Callout>
+
+### Domains (`/domains/...`)
+
+These are all different. See the specific endpoint's page for additional information on what each one returns.
+
+### Tickets (`/tickets/...`)
+
+#### Ticket Creation
+
+Check the returned string to see if it contains <GreenText>`SUCCESS :`</GreenText>.
+
+If it does, the ticket creation was successful. If it does not, the request failed and the string contains the error message.
+
+#### Ticket Reply
+
+Check to see if the returned string is exactly <GreenText>`SUCCESS`</GreenText> (be sure to use PHP's `trim(){:php}`, Python's `.strip()`, etc. first).
+
+If the string is not exactly <GreenText>`SUCCESS`</GreenText>, the request failed and the string contains the error.

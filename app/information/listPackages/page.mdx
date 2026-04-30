@@ -1,0 +1,198 @@
+---
+title: List packages
+description: Gets the list of packages available for the reseller
+---
+
+import { Callout, Tabs, Cards, Table } from "nextra/components";
+import { XCircle, Key } from "react-feather";
+import { JsonOnly, XmlOnly, SwitchFormat } from "@/components/ApiSwitcher";
+import { GreenText } from "@/components/Text";
+
+# List packages
+
+<XmlOnly>
+  {/* prettier-ignore */}
+  <Callout type="error">
+    This API endpoint is <u>**broken**</u>. Use the <SwitchFormat className="x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font] cursor-pointer">JSON endpoint</SwitchFormat> instead.
+  </Callout>
+</XmlOnly>
+
+This endpoint lists the packages available for the reseller.
+
+## HTTP Endpoint
+
+<br />
+<JsonOnly>
+  {/* prettier-ignore */}
+  <code>
+    ```console copy filename="URL"
+    https://panel.myownfreehost.net/json-api/listpkgs.php
+    ```
+  </code>
+</JsonOnly>
+<XmlOnly>
+  {/* prettier-ignore */}
+  <code>
+    ```console copy filename="URL"
+    https://panel.myownfreehost.net/xml-api/listpkgs.php
+    ```
+  </code>
+</XmlOnly>
+
+## Parameters
+
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Required</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`username`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`password`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+## Usage
+
+<JsonOnly>
+  <Tabs items={['cURL', 'Python']}>
+      <Tabs.Tab>
+          ```bash copy showLineNumbers filename="Shell"
+          curl -u username:password "https://panel.myownfreehost.net/json-api/listpkgs.php"
+          ```
+      </Tabs.Tab>
+      <Tabs.Tab>
+            ```python copy showLineNumbers filename="Python"
+            import requests
+            from requests.auth import HTTPBasicAuth
+
+            url = "https://panel.myownfreehost.net/json-api/listpkgs.php"
+
+            response = requests.get(url, auth=HTTPBasicAuth('username', 'password'))
+
+            print(response.json())
+            ```
+      </Tabs.Tab>
+
+  </Tabs>
+</JsonOnly>
+<XmlOnly>
+  <Tabs items={['cURL', 'Python']}>
+    <Tabs.Tab>
+        ```bash copy showLineNumbers filename="Shell"
+        curl -u username:password "https://panel.myownfreehost.net/xml-api/listpkgs.php"
+        ```
+    </Tabs.Tab>
+    <Tabs.Tab>
+        ```python copy showLineNumbers filename="Python"
+        import requests
+        from requests.auth import HTTPBasicAuth
+
+        url = "https://panel.myownfreehost.net/xml-api/listpkgs.php"
+
+        response = requests.get(url, auth=HTTPBasicAuth('username', 'password'))
+
+        print(response.text)
+        ```
+    </Tabs.Tab>
+
+  </Tabs>
+</XmlOnly>
+
+## Response
+
+<JsonOnly>
+    ```json copy showLineNumbers filename="Response"
+    {
+        "package": [
+            {
+                "FRONTPAGE":"n",
+                "CPMOD":"x3",
+                "FEATURELIST":"default",
+                "BWLIMIT":9223372036854775807,
+                "IP":"n",
+                "CGI":"n",
+                "MAXSUB":9999,
+                "name":"Default",
+                "MAXSQL":999,
+                "MAXFTP":"1",
+                "QUOTA":9223372036854775807,
+                "MAXPARK":9999,
+                "HASSHELL":"N",
+                "MAXADDON":9999,
+                "MAXPOP":"10",
+                "MAXLIST":"0",
+                "LANG":"english"
+            },
+            {
+                "FRONTPAGE":"n",
+                "CPMOD":"x3",
+                "FEATURELIST":"default",
+                "BWLIMIT":"9223372036854775807",
+                "IP":"n",
+                "CGI":"n",
+                "MAXSUB":"9999",
+                "name":"Test",
+                "MAXSQL":"999",
+                "MAXFTP":"1",
+                "QUOTA":"9223372036854775807",
+                "MAXPARK":"9999",
+                "HASSHELL":"n",
+                "MAXADDON":"9999",
+                "MAXPOP":"10",
+                "MAXLIST":"0",
+                "LANG":"english"
+            },
+            {
+                "FRONTPAGE":"n",
+                "CPMOD":"x3",
+                "FEATURELIST":"default",
+                "BWLIMIT":"9223372036854775807",
+                "IP":"n",
+                "CGI":"n",
+                "MAXSUB":"9999",
+                "name":"lve0A9SRQo1Cr7HwuqH96DngzvLxn36TYrPB9MpBiuZWE0wtplpv2ecb6lRjRWfvS2iqRMArzWMlh7czbO6YPyJucyxjSEYHC7ZPvn08hsY3ZiE1RSDvxXER1NTprFoAbgT6ZHGvqZYFFvudliUhHp4f3iZGqef6tWVNRhB2D04AwtrDP2zeocoIduHOIuPabEV332vaAdz5Guo4eSAfTlnPBlunXgIkz9XAQK7SLXE0Qrsj2sH5rJOQe8MY3MX_Test",
+                "MAXSQL":"999",
+                "MAXFTP":"1",
+                "QUOTA":"9223372036854775807",
+                "MAXPARK":"9999",
+                "HASSHELL":"n",
+                "MAXADDON":"9999",
+                "MAXPOP":"10",
+                "MAXLIST":"0",
+                "LANG":"english"
+            }
+        ]
+    }
+    ```
+
+</JsonOnly>
+<XmlOnly>
+    ```xml copy filename="Response"
+    ```
+</XmlOnly>
+
+---
+
+### Related pages:
+
+<Cards>
+  <Cards.Card icon={<XCircle />} title="Errors" href="/errors" />
+  <Cards.Card icon={<Key />} title="Authentication" href="/authentication" />
+</Cards>

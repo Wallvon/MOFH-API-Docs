@@ -1,0 +1,155 @@
+---
+title: Get a user's domains
+description: Gets the domain names associated to a user
+---
+
+import { Callout, Tabs, Cards, Table } from "nextra/components";
+import { XCircle, Key } from "react-feather";
+import { JsonOnly, XmlOnly } from "@/components/ApiSwitcher";
+import { GreenText, RedText } from "@/components/Text";
+
+# Get a user's domains
+
+This endpoint gets the domain names connected to a user's vPanel account.
+
+## HTTP Endpoint
+
+<br />
+<JsonOnly>
+  {/* prettier-ignore */}
+  <code>
+    ```console copy filename="URL"
+    https://panel.myownfreehost.net/json-api/getuserdomains.php
+    ```
+  </code>
+</JsonOnly>
+<XmlOnly>
+  {/* prettier-ignore */}
+  <code>
+    ```console copy filename="URL"
+    https://panel.myownfreehost.net/xml-api/getuserdomains.php
+    ```
+  </code>
+</XmlOnly>
+
+## Parameters
+
+<Callout type="important">
+  The API username and key must be provided in both the parameters and basic
+  auth.
+</Callout>
+
+<Callout type="important">
+  Contrary to most other API endpoints, `username` is the vPanel username
+  (hname_12345678).
+</Callout>
+
+<br />
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Parameter</Table.Th>
+      <Table.Th>Required</Table.Th>
+      <Table.Th>Type</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`api_user`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`api_key`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`username`</Table.Td>
+      <Table.Td>
+        <GreenText>Yes</GreenText>
+      </Table.Td>
+      <Table.Td>string</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+## Usage
+
+<JsonOnly>
+  <Tabs items={['cURL', 'Python']}>
+      <Tabs.Tab>
+          ```bash copy showLineNumbers filename="Shell"
+          curl -X POST -u username:password -d "api_user=username&api_key=password&username=hname_12345678" "https://panel.myownfreehost.net/json-api/getuserdomains.php"
+          ```
+      </Tabs.Tab>
+      <Tabs.Tab>
+            ```python copy showLineNumbers filename="Python"
+            import requests
+            from requests.auth import HTTPBasicAuth
+
+            url = "https://panel.myownfreehost.net/json-api/getuserdomains.php"
+            data = {'api_user': 'username', 'api_key': 'password', 'username': 'hname_12345678'}
+
+            response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
+
+            print(response.text)
+            ```
+      </Tabs.Tab>
+
+  </Tabs>
+</JsonOnly>
+<XmlOnly>
+  <Tabs items={['cURL', 'Python']}>
+    <Tabs.Tab>
+            ```bash copy showLineNumbers filename="Shell"
+            curl -X POST -u username:password -d "api_user=username&api_key=password&username=hname_12345678" "https://panel.myownfreehost.net/xml-api/getuserdomains.php"
+            ```
+    </Tabs.Tab>
+    <Tabs.Tab>
+            ```python copy showLineNumbers filename="Python"
+            import requests
+            from requests.auth import HTTPBasicAuth
+
+            url = "https://panel.myownfreehost.net/xml-api/getuserdomains.php"
+            data = {'api_user': 'username', 'api_key': 'password', 'username': 'hname_12345678'}
+
+            response = requests.post(url, params=data, auth=HTTPBasicAuth('username', 'password'))
+
+            print(response.json())
+            ```
+    </Tabs.Tab>
+
+  </Tabs>
+</XmlOnly>
+
+## Response
+
+<Callout type="warning">
+  The response is a list/array returned as a string.
+</Callout>
+
+### <GreenText>Success:</GreenText>
+
+```shell copy showLineNumbers filename="Response"
+[["ACTIVE","subdomain.example.com"]]
+```
+
+### <RedText>Error:</RedText>
+
+```shell copy showLineNumbers filename="Response"
+null
+```
+
+---
+
+### Related pages:
+
+<Cards>
+  <Cards.Card icon={<XCircle />} title="Errors" href="/errors" />
+  <Cards.Card icon={<Key />} title="Authentication" href="/authentication" />
+</Cards>
