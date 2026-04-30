@@ -1,0 +1,4 @@
+Contact: mailto:security@robert-s.dev
+Expires: 2027-04-30T14:00:00.000Z
+Encryption: https://api.myownfreehost.net/pgp.txt
+Preferred-Languages: en, nl
