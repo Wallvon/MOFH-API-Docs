@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Footer, Layout, Navbar } from "nextra-theme-docs";
-import { Banner, Head } from "nextra/components";
+import { Head } from "nextra/components";
 import { getPageMap } from "nextra/page-map";
 import "nextra-theme-docs/style.css";
 import "./globals.css";
@@ -56,11 +56,11 @@ export const metadata: Metadata = {
   },
 };
 
-const banner = (
-  <Banner storageKey="new">
-    🎉 Welcome to the new MyOwnFreeHost API Documentation!
-  </Banner>
-);
+// const banner = (
+//   <Banner storageKey="new">
+//     🎉 Welcome to the new MyOwnFreeHost API Documentation!
+//   </Banner>
+// );
 const navbar = (
   <Navbar
     logo={
@@ -151,7 +151,7 @@ export default async function RootLayout({
       ></Head>
       <body>
         <Layout
-          banner={banner}
+          // banner={banner}
           navbar={navbar}
           pageMap={await getPageMap()}
           sidebar={{ autoCollapse: false, defaultMenuCollapseLevel: 1 }}
